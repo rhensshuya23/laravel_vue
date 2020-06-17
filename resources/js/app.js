@@ -12,6 +12,13 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+import { Form, HasError, AlertError } from 'vform'
+
+// This is a global compenent, means you can access HasError anywhere in your application
+window.Form = Form; //register the Form globally
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+
 
 let routes = [
   { path: '/dashboard', component: require('./components/Dashboard.vue').default },
