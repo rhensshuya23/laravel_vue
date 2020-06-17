@@ -20,6 +20,7 @@ let routes = [
 
 // We have to register our route here
 const router = new VueRouter({
+  mode: 'history',
   routes // short for `routes: routes`
 })
 
