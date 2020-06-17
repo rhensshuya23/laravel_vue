@@ -29,6 +29,9 @@ class UserController extends Controller
     {
         // return ['message'=> 'I have your data'];
         // return $request->all();
+
+       $this->validateData();
+
         return User::create([
             'name' => $request['name'],
             'email' => $request['email'],
@@ -36,6 +39,7 @@ class UserController extends Controller
             'type' => $request['type'],
             'password' => Hash::make($request['password']),
         ]);
+
     }
 
     /**
@@ -70,5 +74,15 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function validateData()
+    {
+            request()->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'type' => 'required',
+            'password' => 'required|min:6',
+        ]);
     }
 }
