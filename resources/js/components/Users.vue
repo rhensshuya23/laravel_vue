@@ -47,7 +47,7 @@
           </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -57,7 +57,7 @@
                 </button>
               </div>
 
-              <form @submit.prevent='createUser'>
+              <form @submit.prevent="createUser">
               <div class="modal-body">
                 <div class="form-group">
                   <input v-model="form.name" type="text" name="name" placeholder="Name" 
@@ -95,8 +95,9 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Create</button>
               </div>
+
               </form>
 
             </div>
@@ -124,7 +125,7 @@
             createUser() {
                 // this.form.post('/create') //The "this" refers to the data() or components
                 //     .then(({data})=> {console.log(data)})
-                this.form.post('api/user')
+                this.form.post('api/user');
             }
         },
         mounted() {
