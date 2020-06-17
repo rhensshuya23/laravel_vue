@@ -56,6 +56,8 @@
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+
+              <form @submit.prevent='createUser'>
               <div class="modal-body">
                 <div class="form-group">
                   <input v-model="form.name" type="text" name="name" placeholder="Name" 
@@ -95,6 +97,8 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary">Create</button>
               </div>
+              </form>
+
             </div>
           </div>
         </div>
@@ -106,7 +110,7 @@
         // every component needs to return data
         data() {
             return {
-                form: new Form({
+                form: new formGlobal({
                 name: '',
                 email: '',
                 password: '',
@@ -114,6 +118,13 @@
                 bio: '',
                 photo: ''
             })
+            }
+        },
+        methods: {
+            createUser() {
+                // this.form.post('/create') //The "this" refers to the data() or components
+                //     .then(({data})=> {console.log(data)})
+                this.form.post('api/user')
             }
         },
         mounted() {
