@@ -23,11 +23,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>175</td>
-                      <td>Mike Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-danger">Denied</span></td>
+                    <tr v-for="user in users" :key="user.id">
+                      <td>{{user.id}}</td>
+                      <td>{{user.name}}</td>
+                      <td>{{user.email}}</td>
+                      <td>{{user.type}}</td>
                       <td>
                           <a href="">
                               <i class="fa fa-edit blue"></i>
@@ -111,6 +111,7 @@
         // every component needs to return data
         data() {
             return {
+                users: {},
                 form: new formGlobal({
                 name: '',
                 email: '',
@@ -122,14 +123,19 @@
             }
         },
         methods: {
+            displayUsers() {
+                axios.get('api/user').then(({data}) => (this.users = data.data));
+            },
+
             createUser() {
                 // this.form.post('/create') //The "this" refers to the data() or components
                 //     .then(({data})=> {console.log(data)})
                 this.form.post('api/user');
             }
         },
-        mounted() {
-            console.log('Component mounted.')
+        created() {
+            this.displayUsers();
+            // console.log('Component mounted.')
         }
     }
 </script>

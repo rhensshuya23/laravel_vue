@@ -16,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return ['my-message'=> 'This is my message'];
+        // return ['my-message'=> 'This is my message'];
+        return User::latest()->paginate(10);
     }
 
     /**
