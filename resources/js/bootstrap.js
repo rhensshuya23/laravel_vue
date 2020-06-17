@@ -1,5 +1,5 @@
 
-window._ = require('lodash');
+window._ = require('lodash'); //lodash is a javascript framework
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -8,11 +8,11 @@ window._ = require('lodash');
  */
 
 try {
-    window.Popper = require('popper.js').default;
+    window.Popper = require('popper.js').default; //propper.js is required for bootstrap
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
-    require('admin-lte');
+    require('admin-lte'); //added
 } catch (e) {}
 
 /**

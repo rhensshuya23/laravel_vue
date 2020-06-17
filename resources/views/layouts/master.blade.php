@@ -10,6 +10,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <title>ROS | Homepage</title>
 
   <!-- This refers to public>css>app.css -->
@@ -17,7 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -72,23 +75,23 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
-            </a>
+            </router-link>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/profile" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Profile
               </p>
-            </a>
+            </router-link>
           </li>
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+          {{-- <li class="nav-item has-treeview">
+            <a href="#" to="nav-link">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Management
@@ -97,13 +100,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Active Page</p>
                 </a>
               </li>
             </ul>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -124,7 +127,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        
+        {{-- it will render matched route compenent here --}}
+        <router-view></router-view>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
