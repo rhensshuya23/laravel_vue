@@ -149,6 +149,7 @@
         },
         created() {
             this.displayUsers();
+            setInterval(() => this.displayUsers(), 3000);
         }
     }
 </script>

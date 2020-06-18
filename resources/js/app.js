@@ -50,6 +50,7 @@ const Toast = Swal.mixin({
 window.toast = Toast;
 
 
+
 let routes = [
   { path: '/dashboard', component: require('./components/Dashboard.vue').default },
   { path: '/profile', component: require('./components/Profile.vue').default },
