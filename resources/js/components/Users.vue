@@ -7,7 +7,8 @@
                 <h3 class="card-title">User Component</h3>
 
                 <div class="card-tools">
-                  <button class="btn btn-success" data-toggle="modal" data-target="#userModal"><i class="fas fa-user-plus"></i> Add New</button>
+                  <!-- <button class="btn btn-success" data-toggle="modal" data-target="#userModal"><i class="fas fa-user-plus"></i> Add New</button> -->
+                  <button class="btn btn-success" @click="addModal"><i class="fas fa-user-plus"></i> Add New</button>
                 </div>
               </div>
               <!-- /.card-header -->
@@ -31,7 +32,7 @@
                       <td>{{user.type | firtCharCapitalize}}</td>
                       <td>{{user.created_at | myDate}}</td>
                       <td>
-                          <a href="">
+                          <a href="" @click.prevent="editModal(user)">
                               <i class="fa fa-edit blue"></i>
                           </a>
                           /
@@ -125,6 +126,15 @@
             }
         },
         methods: {
+            editModal(userData) {
+              this.form.reset()
+              $('#userModal').modal('show')
+              this.form.fill(userData)
+            },
+            addModal() {
+              this.form.reset()
+              $('#userModal').modal('show')
+            },
             displayUsers() {
                 // axios.get('api/user').then(({data}) => (this.users = data.data));
                 axios({
