@@ -124,18 +124,21 @@
         },
         methods: {
             displayUsers() {
-                axios.get('api/user').then(({data}) => (this.users = data.data));
+                // axios.get('api/user').then(({data}) => (this.users = data.data));
+                axios({
+                    method: 'get',
+                    url: 'api/user'
+                })
+                .then(({data}) => (this.users = data.data))
+                .catch(err => console.error());
             },
 
             createUser() {
-                // this.form.post('/create') //The "this" refers to the data() or components
-                //     .then(({data})=> {console.log(data)})
                 this.form.post('api/user');
             }
         },
         created() {
             this.displayUsers();
-            // console.log('Component mounted.')
         }
     }
 </script>

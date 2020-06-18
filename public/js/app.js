@@ -1940,19 +1940,23 @@ __webpack_require__.r(__webpack_exports__);
     displayUsers: function displayUsers() {
       var _this = this;
 
-      axios.get('api/user').then(function (_ref) {
+      // axios.get('api/user').then(({data}) => (this.users = data.data));
+      axios({
+        method: 'get',
+        url: 'api/user'
+      }).then(function (_ref) {
         var data = _ref.data;
         return _this.users = data.data;
+      })["catch"](function (err) {
+        return console.error();
       });
     },
     createUser: function createUser() {
-      // this.form.post('/create') //The "this" refers to the data() or components
-      //     .then(({data})=> {console.log(data)})
       this.form.post('api/user');
     }
   },
   created: function created() {
-    this.displayUsers(); // console.log('Component mounted.')
+    this.displayUsers();
   }
 });
 
