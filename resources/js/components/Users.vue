@@ -138,7 +138,7 @@
                 this.$Progress.start()
                 this.form.post('api/user')
                 .then(() => {
-                    Fire.$emit('afterCreated')
+                    Fire.$emit('userEvent')
                     $('#userModal').modal('hide')
                     toast.fire({
                       icon: 'success',
@@ -173,7 +173,7 @@
                         'User has been deleted.',
                         'success'
                       )
-                    Fire.$emit('afterCreated')
+                    Fire.$emit('userEvent')
                   })
                   this.$Progress.finish()
                   .catch(() => {
@@ -192,7 +192,7 @@
         created() {
             this.displayUsers()
             // setInterval(() => this.displayUsers(), 3000)
-            Fire.$on('afterCreated', () => {
+            Fire.$on('userEvent', () => {
               this.displayUsers()
             })
         }

@@ -1956,7 +1956,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$Progress.start();
       this.form.post('api/user').then(function () {
-        Fire.$emit('afterCreated');
+        Fire.$emit('userEvent');
         $('#userModal').modal('hide');
         toast.fire({
           icon: 'success',
@@ -1989,7 +1989,7 @@ __webpack_require__.r(__webpack_exports__);
 
           _this3.form["delete"]('api/user/' + id).then(function () {
             swal.fire('Deleted!', 'User has been deleted.', 'success');
-            Fire.$emit('afterCreated');
+            Fire.$emit('userEvent');
           });
 
           _this3.$Progress.finish()["catch"](function () {
@@ -2008,7 +2008,7 @@ __webpack_require__.r(__webpack_exports__);
 
     this.displayUsers(); // setInterval(() => this.displayUsers(), 3000)
 
-    Fire.$on('afterCreated', function () {
+    Fire.$on('userEvent', function () {
       _this4.displayUsers();
     });
   }
@@ -78653,13 +78653,7 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
   showConfirmButton: false,
   timer: 3000
 });
-window.toast = Toast; // const Swal = Swal.mixin({
-// 	toast: true,
-// 	position: '',
-// 	showConfirmButton: true
-// });
-// window.swal = Swal;
-// let Fire = new Vue()
+window.toast = Toast; // let Fire = new Vue()
 // window.fire = Fire
 // or this one line
 

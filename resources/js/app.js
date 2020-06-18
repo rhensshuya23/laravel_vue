@@ -49,12 +49,6 @@ const Toast = Swal.mixin({
 });
 window.toast = Toast;
 
-// const Swal = Swal.mixin({
-// 	toast: true,
-// 	position: '',
-// 	showConfirmButton: true
-// });
-// window.swal = Swal;
 
 
 // let Fire = new Vue()
