@@ -137,14 +137,21 @@
             createUser() {
                 this.$Progress.start()
                 this.form.post('api/user')
-                Fire.$emit('afterCreated')
-                $('#userModal').modal('hide')
-                toast.fire({
-                  icon: 'success',
-                  title: 'Successfully created user!'
+                .then(() => {
+                    Fire.$emit('afterCreated')
+                    $('#userModal').modal('hide')
+                    toast.fire({
+                      icon: 'success',
+                      title: 'Successfully created user!'
+                    })
+                    this.$Progress.finish()
                 })
-                this.$Progress.finish()
-
+                .catch(() => {
+                  toast.fire({
+                    icon: "error",
+                    title: "The given data was invalid!"
+                  })
+                })
             },
         },
         created() {
