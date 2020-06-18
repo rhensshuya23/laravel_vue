@@ -11,13 +11,23 @@ window.Vue = require('vue');
 // you need this after installing vue-router
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
-
+import moment from 'moment'
 import { Form, HasError, AlertError } from 'vform'
 
 // This is a global compenent, means you can access HasError anywhere in your application
 window.formGlobal = Form; //register the Form globally
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
+
+
+// We can call firtCharCapitalize anywhere in our vue component - global
+Vue.filter('firtCharCapitalize', function(text) {
+	return text.charAt(0).toUpperCase() + text.slice(1);
+})
+
+Vue.filter('myDate', function(createdAt) {
+	return moment(createdAt).format('MMMM Do YYYY');
+})
 
 
 let routes = [
