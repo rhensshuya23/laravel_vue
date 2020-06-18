@@ -35,7 +35,7 @@
                               <i class="fa fa-edit blue"></i>
                           </a>
                           /
-                          <a href="">
+                          <a href="" @click.prevent="deleteUser(user.id)">
                               <i class="fa fa-trash red"></i>
                           </a>
                       </td>
@@ -153,6 +153,41 @@
                   })
                 })
             },
+
+            deleteUser(id) {
+              swal.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+               }).then((result) => {
+                if(result.value) { //if result is true then
+                  this.$Progress.start()
+                  this.form.delete('api/user/'+id)
+                  .then(()=> {
+                      swal.fire(
+                        'Deleted!',
+                        'User has been deleted.',
+                        'success'
+                      )
+                    Fire.$emit('afterCreated')
+                  })
+                  this.$Progress.finish()
+                  .catch(() => {
+                    swal.fire("Failed!", "There was something wrong!", "Warning");
+                  })
+                }
+                // axios({
+                //   method: 'delete',
+                //   url: 'api/user'+id,
+                // })
+                
+                
+              })
+             }
         },
         created() {
             this.displayUsers()

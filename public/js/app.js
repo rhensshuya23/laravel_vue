@@ -1970,15 +1970,46 @@ __webpack_require__.r(__webpack_exports__);
           title: "The given data was invalid!"
         });
       });
+    },
+    deleteUser: function deleteUser(id) {
+      var _this3 = this;
+
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          //if result is true then
+          _this3.$Progress.start();
+
+          _this3.form["delete"]('api/user/' + id).then(function () {
+            swal.fire('Deleted!', 'User has been deleted.', 'success');
+            Fire.$emit('afterCreated');
+          });
+
+          _this3.$Progress.finish()["catch"](function () {
+            swal.fire("Failed!", "There was something wrong!", "Warning");
+          });
+        } // axios({
+        //   method: 'delete',
+        //   url: 'api/user'+id,
+        // })
+
+      });
     }
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
     this.displayUsers(); // setInterval(() => this.displayUsers(), 3000)
 
     Fire.$on('afterCreated', function () {
-      _this3.displayUsers();
+      _this4.displayUsers();
     });
   }
 });
@@ -62978,7 +63009,25 @@ var render = function() {
                       _vm._v(_vm._s(_vm._f("myDate")(user.created_at)))
                     ]),
                     _vm._v(" "),
-                    _vm._m(2, true)
+                    _c("td", [
+                      _vm._m(2, true),
+                      _vm._v(
+                        "\n                      /\n                      "
+                      ),
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.deleteUser(user.id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-trash red" })]
+                      )
+                    ])
                   ])
                 }),
                 0
@@ -63286,14 +63335,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { attrs: { href: "" } }, [
-        _c("i", { staticClass: "fa fa-edit blue" })
-      ]),
-      _vm._v("\n                      /\n                      "),
-      _c("a", { attrs: { href: "" } }, [
-        _c("i", { staticClass: "fa fa-trash red" })
-      ])
+    return _c("a", { attrs: { href: "" } }, [
+      _c("i", { staticClass: "fa fa-edit blue" })
     ])
   },
   function() {
@@ -78610,7 +78653,13 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
   showConfirmButton: false,
   timer: 3000
 });
-window.toast = Toast; // let Fire = new Vue()
+window.toast = Toast; // const Swal = Swal.mixin({
+// 	toast: true,
+// 	position: '',
+// 	showConfirmButton: true
+// });
+// window.swal = Swal;
+// let Fire = new Vue()
 // window.fire = Fire
 // or this one line
 
