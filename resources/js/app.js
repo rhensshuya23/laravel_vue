@@ -11,9 +11,17 @@ window.Vue = require('vue');
 // you need this after installing vue-router
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
-import moment from 'moment'
-import { Form, HasError, AlertError } from 'vform'
 
+import moment from 'moment'
+
+import VueProgressBar from 'vue-progressbar'
+Vue.use(VueProgressBar, {
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '5px'
+})
+
+import { Form, HasError, AlertError } from 'vform'
 // This is a global compenent, means you can access HasError anywhere in your application
 window.formGlobal = Form; //register the Form globally
 Vue.component(HasError.name, HasError)
