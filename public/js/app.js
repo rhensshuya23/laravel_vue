@@ -1949,13 +1949,12 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (_ref) {
         var data = _ref.data;
         return _this.users = data.data;
-      })["catch"](function (err) {
-        return console.error();
       });
     },
     createUser: function createUser() {
       this.$Progress.start();
       this.form.post('api/user');
+      Fire.$emit('afterCreated');
       $('#userModal').modal('hide');
       toast.fire({
         icon: 'success',
@@ -1967,10 +1966,11 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this2 = this;
 
-    this.displayUsers();
-    setInterval(function () {
-      return _this2.displayUsers();
-    }, 3000);
+    this.displayUsers(); // setInterval(() => this.displayUsers(), 3000)
+
+    Fire.$on('afterCreated', function () {
+      _this2.displayUsers();
+    });
   }
 });
 
@@ -78601,7 +78601,11 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
   showConfirmButton: false,
   timer: 3000
 });
-window.toast = Toast;
+window.toast = Toast; // let Fire = new Vue()
+// window.fire = Fire
+// or this one line
+
+window.Fire = new Vue();
 var routes = [{
   path: '/dashboard',
   component: __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue")["default"]

@@ -50,6 +50,10 @@ const Toast = Swal.mixin({
 window.toast = Toast;
 
 
+// let Fire = new Vue()
+// window.fire = Fire
+// or this one line
+window.Fire = new Vue()
 
 let routes = [
   { path: '/dashboard', component: require('./components/Dashboard.vue').default },

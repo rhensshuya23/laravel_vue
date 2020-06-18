@@ -132,24 +132,27 @@
                     url: 'api/user'
                 })
                 .then(({data}) => (this.users = data.data))
-                .catch(err => console.error());
             },
 
             createUser() {
-                this.$Progress.start();
-                this.form.post('api/user');
-                $('#userModal').modal('hide');
+                this.$Progress.start()
+                this.form.post('api/user')
+                Fire.$emit('afterCreated')
+                $('#userModal').modal('hide')
                 toast.fire({
                   icon: 'success',
                   title: 'Successfully created user!'
-                });
-                this.$Progress.finish();
+                })
+                this.$Progress.finish()
 
-            }
+            },
         },
         created() {
-            this.displayUsers();
-            setInterval(() => this.displayUsers(), 3000);
+            this.displayUsers()
+            // setInterval(() => this.displayUsers(), 3000)
+            Fire.$on('afterCreated', () => {
+              this.displayUsers()
+            })
         }
     }
 </script>
