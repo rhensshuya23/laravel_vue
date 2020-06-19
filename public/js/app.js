@@ -1930,25 +1930,41 @@ __webpack_require__.r(__webpack_exports__);
 
       var reader = new FileReader();
 
-      reader.onloadend = function (file) {
-        _this.form.photo = reader.result;
-      };
+      if (file['size'] < 2111775) {
+        reader.onloadend = function (file) {
+          _this.form.photo = reader.result;
+        };
 
-      reader.readAsDataURL(file);
+        reader.readAsDataURL(file);
+      } else {
+        swal.fire({
+          title: 'Oops...',
+          text: "Please upload less than 2mb file!",
+          icon: 'warning',
+          type: 'error'
+        });
+      }
     },
     updateInfo: function updateInfo() {
-      this.form.put('api/profile').then(function () {})["catch"](function () {});
+      var _this2 = this;
+
+      this.$Progress.start();
+      this.form.put('api/profile').then(function () {
+        _this2.$Progress.finish();
+      })["catch"](function () {
+        _this2.$Progress.fail();
+      });
     }
   },
   mounted: function mounted() {
     console.log('Component mounted.');
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
     axios.get("api/profile").then(function (_ref) {
       var data = _ref.data;
-      return _this2.form.fill(data);
+      return _this3.form.fill(data);
     });
   }
 });

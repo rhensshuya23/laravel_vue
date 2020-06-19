@@ -109,19 +109,33 @@
                 let file = fileEvent.target.files[0] // 0 because array starts in 0
                 // console.log(file)
                 let reader = new FileReader();
-                  reader.onloadend = (file) => {
+
+                if(file['size'] < 2111775) {
+                    reader.onloadend = (file) => {
                     this.form.photo = reader.result
                   }
                   reader.readAsDataURL(file);
+                }
+                else {
+                    swal.fire({
+                      title: 'Oops...',
+                      text: "Please upload less than 2mb file!",
+                      icon: 'warning',
+                      type: 'error'
+                       })
+                }
+                  
             },
 
             updateInfo() {
+                this.$Progress.start()
                 this.form.put('api/profile')
                 .then(() => {
-                    
+
+                    this.$Progress.finish()
                 })
                 .catch(() => {
-                    
+                    this.$Progress.fail()
                 })
             }
         },
