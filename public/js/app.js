@@ -1921,7 +1921,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    updateProfile: function updateProfile(fileEvent) {
+    updatePhoto: function updatePhoto(fileEvent) {
       var _this = this;
 
       // console.log("uploading file")
@@ -1935,6 +1935,9 @@ __webpack_require__.r(__webpack_exports__);
       };
 
       reader.readAsDataURL(file);
+    },
+    updateInfo: function updateInfo() {
+      this.form.put('api/profile').then(function () {})["catch"](function () {});
     }
   },
   mounted: function mounted() {
@@ -64836,12 +64839,29 @@ var render = function() {
                       _c("input", {
                         staticClass: "form-input",
                         attrs: { type: "file", name: "photo" },
-                        on: { change: _vm.updateProfile }
+                        on: { change: _vm.updatePhoto }
                       })
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(3)
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c("div", { staticClass: "offset-sm-2 col-sm-10" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { type: "submit" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.updateInfo($event)
+                            }
+                          }
+                        },
+                        [_vm._v("Submit")]
+                      )
+                    ])
+                  ])
                 ])
               ]
             )
@@ -64889,20 +64909,6 @@ var staticRenderFns = [
             placeholder: "Password"
           }
         })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c("div", { staticClass: "offset-sm-2 col-sm-10" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-danger", attrs: { type: "submit" } },
-          [_vm._v("Submit")]
-        )
       ])
     ])
   }

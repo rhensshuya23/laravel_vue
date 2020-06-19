@@ -69,13 +69,13 @@
                                 <div class="form-group row">
                                     <label for="photo" class="col-sm-2 col-form-label">Profile Photo</label>
                                     <div class="col-sm-10">
-                                    <input type="file" @change="updateProfile" class="form-input" name="photo">
+                                    <input type="file" @change="updatePhoto" class="form-input" name="photo">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="offset-sm-2 col-sm-10">
-                                    <button type="submit" class="btn btn-danger">Submit</button>
+                                    <button @click.prevent="updateInfo" type="submit" class="btn btn-danger">Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -104,7 +104,7 @@
             }
         },
         methods: {
-            updateProfile(fileEvent) {
+            updatePhoto(fileEvent) {
                 // console.log("uploading file")
                 let file = fileEvent.target.files[0] // 0 because array starts in 0
                 // console.log(file)
@@ -113,6 +113,16 @@
                     this.form.photo = reader.result
                   }
                   reader.readAsDataURL(file);
+            },
+
+            updateInfo() {
+                this.form.put('api/profile')
+                .then(() => {
+                    
+                })
+                .catch(() => {
+                    
+                })
             }
         },
         mounted() {
