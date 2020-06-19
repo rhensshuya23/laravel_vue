@@ -17,10 +17,10 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('api');
     }
 
-    
+
     public function index()
     {
         // return ['my-message'=> 'This is my message'];
