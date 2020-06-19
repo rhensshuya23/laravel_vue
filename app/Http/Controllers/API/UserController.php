@@ -61,7 +61,15 @@ class UserController extends Controller
     {
         $user = auth('api')->user();
 
-        return $request->photo;
+        // return $request->photo; //same with $request['photo']
+
+        if($request->photo) {
+            $name = time().'.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
+
+            // use the class image for intervention then the make function
+            \Image::make($request->photo)->save(public_path('img/profile/').$name);
+
+        }
     }
 
     /**
