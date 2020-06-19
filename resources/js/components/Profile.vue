@@ -12,7 +12,7 @@
 
                     <h3 class="profile-username text-center">{{ this.form.name }}</h3>
 
-                    <p class="text-muted text-center">Software Engineer</p>
+                    <p class="text-muted text-center">{{ this.form.position }}</p>
                   </div>
                   <!-- /.card-body -->
                 </div>
@@ -94,6 +94,7 @@
                 form: new formGlobal({
                 id: '',
                 name: '',
+                position: '',
                 email: '',
                 password: '',
                 type: '',

@@ -18,6 +18,7 @@
                     <tr>
                       <th>ID</th>
                       <th>NAME</th>
+                      <th>POSITION</th>
                       <th>EMAIL</th>
                       <th>TYPE</th>
                       <th>REGISTERED AT</th>
@@ -28,6 +29,7 @@
                     <tr v-for="user in users" :key="user.id">
                       <td>{{user.id}}</td>
                       <td>{{user.name | firtCharCapitalize }}</td>
+                      <td>{{user.position | firtCharCapitalize}}</td>
                       <td>{{user.email}}</td>
                       <td>{{user.type | firtCharCapitalize}}</td>
                       <td>{{user.created_at | myDate}}</td>
@@ -67,6 +69,12 @@
                   <input v-model="form.name" type="text" name="name" placeholder="Name" 
                     class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
                   <has-error :form="form" field="name"></has-error>
+                </div>
+
+                <div class="form-group">
+                  <input v-model="form.position" type="text" name="position" placeholder="Position" 
+                    class="form-control" :class="{ 'is-invalid': form.errors.has('position') }">
+                  <has-error :form="form" field="position"></has-error>
                 </div>
 
                 <div class="form-group">
@@ -121,6 +129,7 @@
                 form: new formGlobal({
                 id: '',
                 name: '',
+                position: '',
                 email: '',
                 password: '',
                 type: '',

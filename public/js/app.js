@@ -1911,6 +1911,7 @@ __webpack_require__.r(__webpack_exports__);
       form: new formGlobal({
         id: '',
         name: '',
+        position: '',
         email: '',
         password: '',
         type: '',
@@ -2056,6 +2057,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   // every component needs to return data
   data: function data() {
@@ -2065,6 +2074,7 @@ __webpack_require__.r(__webpack_exports__);
       form: new formGlobal({
         id: '',
         name: '',
+        position: '',
         email: '',
         password: '',
         type: '',
@@ -64685,7 +64695,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "text-muted text-center" }, [
-              _vm._v("Software Engineer")
+              _vm._v(_vm._s(this.form.position))
             ])
           ])
         ]),
@@ -64947,6 +64957,12 @@ var render = function() {
                       _vm._v(_vm._s(_vm._f("firtCharCapitalize")(user.name)))
                     ]),
                     _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(_vm._f("firtCharCapitalize")(user.position))
+                      )
+                    ]),
+                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(user.email))]),
                     _vm._v(" "),
                     _c("td", [
@@ -65096,6 +65112,46 @@ var render = function() {
                       _vm._v(" "),
                       _c("has-error", {
                         attrs: { form: _vm.form, field: "name" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group" },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.position,
+                            expression: "form.position"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.form.errors.has("position")
+                        },
+                        attrs: {
+                          type: "text",
+                          name: "position",
+                          placeholder: "Position"
+                        },
+                        domProps: { value: _vm.form.position },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "position", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "position" }
                       })
                     ],
                     1
@@ -65340,6 +65396,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("ID")]),
         _vm._v(" "),
         _c("th", [_vm._v("NAME")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("POSITION")]),
         _vm._v(" "),
         _c("th", [_vm._v("EMAIL")]),
         _vm._v(" "),
