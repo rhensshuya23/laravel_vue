@@ -3,13 +3,13 @@
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">Developer Component</div>
-
-                    <div class="card-body">
-                        <passport-clients></passport-clients>
-                        <passport-authorized-clients></passport-authorized-clients>
-                        <passport-personal-access-tokens></passport-personal-access-tokens>
-                    </div>
+                    <div class="card-header"></div>
+                        <div class="card-title">Developer Component</div>
+                        <div class="card-body">
+                            <passport-clients></passport-clients>
+                            <passport-authorized-clients></passport-authorized-clients>
+                            <passport-personal-access-tokens></passport-personal-access-tokens>
+                        </div>
                 </div>
             </div>
         </div>
