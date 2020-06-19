@@ -119,6 +119,7 @@
                 editMode: false,
                 users: {},
                 form: new formGlobal({
+                id: '',
                 name: '',
                 email: '',
                 password: '',
@@ -154,13 +155,14 @@
                       title: 'Successfully created user!'
                     })
                     this.$Progress.finish()
-                })
-                .catch(() => {
-                  toast.fire({
-                    icon: "error",
-                    title: "The given data was invalid!"
                   })
-                })
+                  .catch(() => {
+                    this.$Progress.fail()
+                    toast.fire({
+                      icon: "error",
+                      title: "The given data was invalid!"
+                    })
+                  })
             },
 
             editModal(userData) {
@@ -171,7 +173,25 @@
             },
 
             updateUser() {
-              console.log("Edit Mode")
+              // console.log("Edit Mode")
+              this.$Progress.start()
+              this.form.put('api/user/'+this.form.id)
+              .then(() => {
+                Fire.$emit('userEvent')
+                $('#userModal').modal('hide')
+                toast.fire({
+                  icon: 'success',
+                  title: 'Successfully updated user!'
+                })
+                this.$Progress.finish()
+              })
+              .catch(() =>{
+                  this.$Progress.fail()
+                  toast.fire({
+                  icon: "error",
+                  title: "The given data was invalid!"
+                  })
+              })
             },
 
             deleteUser(id) {

@@ -1933,6 +1933,7 @@ __webpack_require__.r(__webpack_exports__);
       editMode: false,
       users: {},
       form: new formGlobal({
+        id: '',
         name: '',
         email: '',
         password: '',
@@ -1974,6 +1975,8 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.$Progress.finish();
       })["catch"](function () {
+        _this2.$Progress.fail();
+
         toast.fire({
           icon: "error",
           title: "The given data was invalid!"
@@ -1987,10 +1990,30 @@ __webpack_require__.r(__webpack_exports__);
       this.form.fill(userData);
     },
     updateUser: function updateUser() {
-      console.log("Edit Mode");
+      var _this3 = this;
+
+      // console.log("Edit Mode")
+      this.$Progress.start();
+      this.form.put('api/user/' + this.form.id).then(function () {
+        Fire.$emit('userEvent');
+        $('#userModal').modal('hide');
+        toast.fire({
+          icon: 'success',
+          title: 'Successfully updated user!'
+        });
+
+        _this3.$Progress.finish();
+      })["catch"](function () {
+        _this3.$Progress.fail();
+
+        toast.fire({
+          icon: "error",
+          title: "The given data was invalid!"
+        });
+      });
     },
     deleteUser: function deleteUser(id) {
-      var _this3 = this;
+      var _this4 = this;
 
       swal.fire({
         title: 'Are you sure?',
@@ -2003,14 +2026,14 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //if result is true then
-          _this3.$Progress.start();
+          _this4.$Progress.start();
 
-          _this3.form["delete"]('api/user/' + id).then(function () {
+          _this4.form["delete"]('api/user/' + id).then(function () {
             swal.fire('Deleted!', 'User has been deleted.', 'success');
             Fire.$emit('userEvent');
           });
 
-          _this3.$Progress.finish()["catch"](function () {
+          _this4.$Progress.finish()["catch"](function () {
             swal.fire("Failed!", "There was something wrong!", "Warning");
           });
         } // axios({
@@ -2022,12 +2045,12 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this4 = this;
+    var _this5 = this;
 
     this.displayUsers(); // setInterval(() => this.displayUsers(), 3000)
 
     Fire.$on('userEvent', function () {
-      _this4.displayUsers();
+      _this5.displayUsers();
     });
   }
 });

@@ -31,7 +31,7 @@ class UserController extends Controller
         // return ['message'=> 'I have your data'];
         // return $request->all();
 
-       $this->validateData();
+       $this->validateData(0);
 
         return User::create([
             'name' => $request['name'],
@@ -63,7 +63,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $this->validateData($id);
+
+        $user->update($request->all());
+
+        return ['message' => 'Successfully updated'];
     }
 
     /**
@@ -79,13 +85,14 @@ class UserController extends Controller
         $user->delete();
     }
 
-    private function validateData()
+    private function validateData($id)
     {
+        // $user = User::findOrFail($id);
             request()->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|string|email|unique:users,email,'.$id,
             'type' => 'required',
-            'password' => 'required|min:6',
+            'password' => 'sometimes|min:6',
         ]);
     }
 }
