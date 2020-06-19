@@ -63,13 +63,28 @@ class UserController extends Controller
 
         // return $request->photo; //same with $request['photo']
 
-        if($request->photo) {
+        $this->validateData($user->id);
+
+        $currentPhoto = $user->photo;
+
+        if($request->photo != $currentPhoto) {
             $name = time().'.' . explode('/', explode(':', substr($request->photo, 0, strpos($request->photo, ';')))[1])[1];
 
             // use the class image for intervention then the make function
             \Image::make($request->photo)->save(public_path('img/profile/').$name);
 
+            // $request->photo = $name; //or this one
+            $request->merge(['photo'=>$name]);
+
         }
+
+        if(!empty($request->password)) {
+            $request->merge(['password' => Hash::make($request['password'])]);    
+        }
+
+        $user->update($request->all());
+
+        return ["message" => "Successfully updated profile"];
     }
 
     /**
@@ -97,6 +112,11 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $this->validateData($id);
+
+        if(!empty($request->password)) {
+            $request->merge(['password' => Hash::make($request['password'])]);    
+        }
+        
 
         $user->update($request->all());
 

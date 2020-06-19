@@ -49,6 +49,7 @@
                                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
                                     <input v-model="form.name" type="email" class="form-control" id="inputName" placeholder="Name">
+                                    <has-error :form="form" field="name"></has-error>
                                     </div>
                                 </div>
 
@@ -56,13 +57,15 @@
                                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
                                     <input v-model="form.email" type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                    <has-error :form="form" field="email"></has-error>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label for="password" class="col-sm-2 col-form-label">Password</label>
                                     <div class="col-sm-10">
-                                    <input type="text" name="password" class="form-control" id="password" placeholder="Password">
+                                    <input v-model="form.password" type="text" name="password" class="form-control" id="password" placeholder="Password">
+                                    <has-error :form="form" field="password"></has-error>
                                     </div>
                                 </div>
 
@@ -70,6 +73,7 @@
                                     <label for="photo" class="col-sm-2 col-form-label">Profile Photo</label>
                                     <div class="col-sm-10">
                                     <input type="file" @change="updatePhoto" class="form-input" name="photo">
+                                    <has-error :form="form" field="photo"></has-error>
                                     </div>
                                 </div>
 
