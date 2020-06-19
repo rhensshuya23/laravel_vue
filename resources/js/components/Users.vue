@@ -214,18 +214,13 @@
                         'success'
                       )
                     Fire.$emit('userEvent')
+                    this.$Progress.finish()
                   })
-                  this.$Progress.finish()
                   .catch(() => {
+                    this.$Progress.fail()
                     swal.fire("Failed!", "There was something wrong!", "Warning");
                   })
                 }
-                // axios({
-                //   method: 'delete',
-                //   url: 'api/user'+id,
-                // })
-                
-                
               })
              }
         },
