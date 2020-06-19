@@ -38,7 +38,7 @@ class UserController extends Controller
         // return ['message'=> 'I have your data'];
         // return $request->all();
 
-       $this->validateData(0);
+       $this->validateData(0); // I put an 0 params just to read the validation, 0 has nothing to do with this
 
         return User::create([
             'name' => $request['name'],

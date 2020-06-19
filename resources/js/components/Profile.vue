@@ -7,7 +7,7 @@
                 <div class="card card-primary card-outline">
                   <div class="card-body box-profile">
                     <div class="text-center">
-                      <img src="/././././public/img/default.png" class="img-circle elevation-2" alt="User Image">
+                      <!-- <img src="./img/default.png" class="img-circle elevation-2" alt="User Image"> -->
                     </div>
 
                     <h3 class="profile-username text-center">{{ this.form.name }}</h3>
@@ -69,7 +69,7 @@
                                 <div class="form-group row">
                                     <label for="photo" class="col-sm-2 col-form-label">Profile Photo</label>
                                     <div class="col-sm-10">
-                                    <input type="file" class="form-input" name="photo">
+                                    <input type="file" @change="updateProfile" class="form-input" name="photo">
                                     </div>
                                 </div>
 
@@ -101,6 +101,18 @@
                 bio: '',
                 photo: ''
              })
+            }
+        },
+        methods: {
+            updateProfile(fileEvent) {
+                // console.log("uploading file")
+                let file = fileEvent.target.files[0] // 0 because array starts in 0
+                // console.log(file)
+                let reader = new FileReader();
+                  reader.onloadend = (file) => {
+                    this.form.photo = reader.result
+                  }
+                  reader.readAsDataURL(file);
             }
         },
         mounted() {
