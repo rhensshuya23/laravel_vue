@@ -76,6 +76,12 @@ class UserController extends Controller
             // $request->photo = $name; //or this one
             $request->merge(['photo'=>$name]);
 
+            $userPhoto = public_path('img/profile/').$currentPhoto;
+            // return [$userPhoto];
+            if(file_exists($userPhoto)) {
+                @unlink($userPhoto);
+            }
+
         }
 
         if(!empty($request->password)) {
