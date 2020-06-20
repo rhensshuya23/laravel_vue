@@ -7,7 +7,7 @@
                 <div class="card card-primary card-outline">
                   <div class="card-body box-profile">
                     <div class="text-center">
-                      <img :src="getProfilePhoto()" class="img-circle elevation-2" alt="User Image">
+                      <img :src="getProfilePhoto()" width="100px" class="img-circle elevation-2" alt="User Image">
                     </div>
 
                     <h3 class="profile-username text-center">{{ this.form.name }}</h3>
@@ -108,8 +108,13 @@
             }
         },
         methods: {
+            displayInfo() {
+                 axios.get("api/profile")
+                 .then(({data}) => (this.form.fill(data)));
+            },
             getProfilePhoto() {
-                return "img/profile/" + this.form.photo
+                let photo = (this.form.photo.length > 100) ? this.form.photo : "/img/profile/"+this.form.photo;
+                return photo;
             },
             updatePhoto(fileEvent) {
                 // console.log("uploading file")
@@ -138,7 +143,11 @@
                 this.$Progress.start()
                 this.form.put('api/profile')
                 .then(() => {
-
+                    Fire.$emit('userEvent')
+                    toast.fire({
+                      icon: 'success',
+                      title: 'Successfully updated profile!'
+                    })
                     this.$Progress.finish()
                 })
                 .catch(() => {
@@ -150,8 +159,11 @@
             console.log('Component mounted.')
         },
         created() {
-            axios.get("api/profile")
-            .then(({data}) => (this.form.fill(data)));
+            this.displayInfo()
+            Fire.$on('userEvent', () => {
+              this.displayInfo()
+            })
+           
         }
     }
 </script>

@@ -1925,11 +1925,20 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    displayInfo: function displayInfo() {
+      var _this = this;
+
+      axios.get("api/profile").then(function (_ref) {
+        var data = _ref.data;
+        return _this.form.fill(data);
+      });
+    },
     getProfilePhoto: function getProfilePhoto() {
-      return "img/profile/" + this.form.photo;
+      var photo = this.form.photo.length > 100 ? this.form.photo : "/img/profile/" + this.form.photo;
+      return photo;
     },
     updatePhoto: function updatePhoto(fileEvent) {
-      var _this = this;
+      var _this2 = this;
 
       // console.log("uploading file")
       var file = fileEvent.target.files[0]; // 0 because array starts in 0
@@ -1939,7 +1948,7 @@ __webpack_require__.r(__webpack_exports__);
 
       if (file['size'] < 2111775) {
         reader.onloadend = function (file) {
-          _this.form.photo = reader.result;
+          _this2.form.photo = reader.result;
         };
 
         reader.readAsDataURL(file);
@@ -1953,13 +1962,19 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     updateInfo: function updateInfo() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$Progress.start();
       this.form.put('api/profile').then(function () {
-        _this2.$Progress.finish();
+        Fire.$emit('userEvent');
+        toast.fire({
+          icon: 'success',
+          title: 'Successfully updated profile!'
+        });
+
+        _this3.$Progress.finish();
       })["catch"](function () {
-        _this2.$Progress.fail();
+        _this3.$Progress.fail();
       });
     }
   },
@@ -1967,11 +1982,11 @@ __webpack_require__.r(__webpack_exports__);
     console.log('Component mounted.');
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
-    axios.get("api/profile").then(function (_ref) {
-      var data = _ref.data;
-      return _this3.form.fill(data);
+    this.displayInfo();
+    Fire.$on('userEvent', function () {
+      _this4.displayInfo();
     });
   }
 });
@@ -64736,7 +64751,11 @@ var render = function() {
             _c("div", { staticClass: "text-center" }, [
               _c("img", {
                 staticClass: "img-circle elevation-2",
-                attrs: { src: _vm.getProfilePhoto(), alt: "User Image" }
+                attrs: {
+                  src: _vm.getProfilePhoto(),
+                  width: "100px",
+                  alt: "User Image"
+                }
               })
             ]),
             _vm._v(" "),
