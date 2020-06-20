@@ -7,7 +7,7 @@
                 <div class="card card-primary card-outline">
                   <div class="card-body box-profile">
                     <div class="text-center">
-                      <!-- <img src="./img/default.png" class="img-circle elevation-2" alt="User Image"> -->
+                      <img :src="getProfilePhoto()" class="img-circle elevation-2" alt="User Image">
                     </div>
 
                     <h3 class="profile-username text-center">{{ this.form.name }}</h3>
@@ -108,6 +108,9 @@
             }
         },
         methods: {
+            getProfilePhoto() {
+                return "img/profile/" + this.form.photo
+            },
             updatePhoto(fileEvent) {
                 // console.log("uploading file")
                 let file = fileEvent.target.files[0] // 0 because array starts in 0

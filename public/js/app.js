@@ -1925,6 +1925,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    getProfilePhoto: function getProfilePhoto() {
+      return "img/profile/" + this.form.photo;
+    },
     updatePhoto: function updatePhoto(fileEvent) {
       var _this = this;
 
@@ -64730,7 +64733,12 @@ var render = function() {
       _c("div", { staticClass: "col-md-3" }, [
         _c("div", { staticClass: "card card-primary card-outline" }, [
           _c("div", { staticClass: "card-body box-profile" }, [
-            _c("div", { staticClass: "text-center" }),
+            _c("div", { staticClass: "text-center" }, [
+              _c("img", {
+                staticClass: "img-circle elevation-2",
+                attrs: { src: _vm.getProfilePhoto(), alt: "User Image" }
+              })
+            ]),
             _vm._v(" "),
             _c("h3", { staticClass: "profile-username text-center" }, [
               _vm._v(_vm._s(this.form.name))
