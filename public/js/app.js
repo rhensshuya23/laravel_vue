@@ -2133,12 +2133,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       // axios.get('api/user').then(({data}) => (this.users = data.data));
-      axios({
-        method: 'get',
-        url: 'api/user'
-      }).then(function (_ref) {
-        var data = _ref.data;
-        return _this.users = data.data;
+      // axios({
+      //     method: 'get',
+      //     url: 'api/user'
+      // })
+      // .then(({data}) => (this.users = data.data))
+      // or like this
+      axios.get('api/user').then(function (response) {
+        _this.users = response.data;
       });
     },
     createUser: function createUser() {
@@ -65033,7 +65035,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.users, function(user) {
+                _vm._l(_vm.users.data, function(user) {
                   return _c("tr", { key: user.id }, [
                     _c("td", [_vm._v(_vm._s(user.id))]),
                     _vm._v(" "),

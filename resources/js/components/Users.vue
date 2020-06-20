@@ -26,7 +26,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="user in users" :key="user.id">
+                    <tr v-for="user in users.data" :key="user.id">
                       <td>{{user.id}}</td>
                       <td>{{user.name | firtCharCapitalize }}</td>
                       <td>{{user.position | firtCharCapitalize}}</td>
@@ -146,11 +146,16 @@
             },
             displayUsers() {
                 // axios.get('api/user').then(({data}) => (this.users = data.data));
-                axios({
-                    method: 'get',
-                    url: 'api/user'
+                // axios({
+                //     method: 'get',
+                //     url: 'api/user'
+                // })
+                // .then(({data}) => (this.users = data.data))
+                 // or like this
+                axios.get('api/user')
+                .then(response => {
+                  this.users = response.data;
                 })
-                .then(({data}) => (this.users = data.data))
             },
 
             createUser() {
