@@ -109,6 +109,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
           <li class="nav-item">
+            <router-link to="/contact-us" class="nav-link">
+              <i class="nav-icon fas fa-envelope"></i>
+              <p>
+                Contact Us
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
