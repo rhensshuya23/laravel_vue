@@ -9,10 +9,11 @@
 
     <title>HR Solutions | Login</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/materialize.min.js') }}" defer></script> --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    {{-- <link href="{{ asset('css/materialize.min.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <style>
         body {
           display: flex;
