@@ -16,7 +16,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>ROS | Homepage</title>
 
   <!-- This refers to public>css>app.css -->
-  <link rel="stylesheet" type="text/css" href="css/app.css"> 
+  <link rel="stylesheet" type="text/css" href="css/app.css">
+
+  <link rel="icon" type="image/png" href="/img/ros-r-only.png"/>
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -50,10 +52,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="./img/ros-r-only.png" alt="Profile Picture" class="brand-image img-circle elevation-3"
-           style="opacity: .8">
-      <span class="brand-text font-weight-light">ROS Project</span>
+    <a href="/dashboard" class="brand-link">
+      <img src="./img/ros-r-only.png" alt="Profile Picture" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <p style="color: white"><span class="brand-text font-weight-light">HR System</span></p>
+      {{-- <p style="text-align: center; font-size: 15px; margin-top: -10px;"><span class="brand-text font-weight-light">HR System</span></p> --}}
     </a>
 
     <!-- Sidebar -->
@@ -61,7 +63,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="./img/default.png" class="img-circle elevation-2" alt="User Image">
+          <img src="img/profile/{{Auth::user()->photo}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->name }}</a>
@@ -111,7 +113,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
                              <i class="nav-icon fas fa-sign-out-alt"></i>
-                {{ __('Logout') }}
+                <p>
+                  {{ __('Logout') }}
+                </p>
             </a>
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

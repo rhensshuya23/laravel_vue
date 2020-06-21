@@ -64754,6 +64754,7 @@ var render = function() {
                 attrs: {
                   src: _vm.getProfilePhoto(),
                   width: "100px",
+                  height: "100px",
                   alt: "User Image"
                 }
               })

@@ -7,7 +7,7 @@
                 <div class="card card-primary card-outline">
                   <div class="card-body box-profile">
                     <div class="text-center">
-                      <img :src="getProfilePhoto()" width="100px" class="img-circle elevation-2" alt="User Image">
+                      <img :src="getProfilePhoto()" width="100px" height="100px" class="img-circle elevation-2" alt="User Image">
                     </div>
 
                     <h3 class="profile-username text-center">{{ this.form.name }}</h3>
