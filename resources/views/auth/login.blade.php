@@ -1,74 +1,125 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+    <title>HR Solutions | Login</title>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+      <style>
+        body {
+          display: flex;
+          min-height: 100vh;
+          flex-direction: column;
+        }
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+        main {
+          flex: 1 0 auto;
+        }
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+        body {
+          background: #fff;
+        }
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+        .cus-login {
+            display: inline-block;
+            padding: 32px 48px 0px 48px;
+            border: 1px solid #EEE;
+        }
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+        .input-field input[type=password] {
+            width: 157%;
+        }
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+        .input-field input[type=email]:focus + label,
+        .input-field input[type=password]:focus + label {
+          color: #e91e63;
+        }
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+        .input-field input[type=email]:focus,
+        .input-field input[type=password]:focus {
+          border-bottom: 2px solid #e91e63;
+          box-shadow: none;
+    }
+  </style>
+</head>
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+<body>
+  <div id="app"></div>
+  <main>
+    <center>
+      <h5 class="indigo-text">HR Solutions - ROS</h5>
+      <div class="section"></div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-sign-in-alt"></i>
-                                    {{ __('Login') }}
-                                </button>
+      <div class="container">
+        <div class="z-depth-1 grey lighten-4 row cus-login">
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
+          <form class="col s12" method="POST" action="{{ route('login') }}">
+            @csrf
+            <div class='row'>
+              <div class='col s12'>
+              </div>
             </div>
+
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class="validate {{ $errors->has('email') ? ' is-invalid' : '' }}" type='email' name='email' id='email' value="{{ old('email') }}" required autofocus />
+                <label for='email'>Enter your email</label>
+                    @if ($errors->has('email'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
+              </div>
+            </div>
+
+            <div class='row'>
+              <div class='input-field col s12'>
+                <input class="validate{{ $errors->has('password') ? ' is-invalid' : '' }}" type='password' name='password' id='password' required />
+                <label for='password'>Enter your password</label>
+                 @if ($errors->has('password'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('password') }}</strong>
+                    </span>
+                 @endif
+              </div>
+              <label style='float: right; margin-top: 80px'>
+                @if (Route::has('password.request'))
+                <a class='pink-text' href="{{ route('password.request') }}"><b>Forgot Password?</b></a>
+                @endif
+              </label>
+            </div>
+
+           
+              
+
+            <br />
+            <center>
+              <div class='row'>
+                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>
+                <i class="fas fa-sign-in-alt"></i>
+                Login
+                </button>
+              </div>
+            </center>
+          </form>
         </div>
-    </div>
-</div>
-@endsection
+      </div>
+      <a href="/register">Create account</a>
+    </center>
+
+    <div class="section"></div>
+    <div class="section"></div>
+  </main>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+</body>
+
+</html>

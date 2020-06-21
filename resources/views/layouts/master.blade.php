@@ -54,7 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Brand Logo -->
     <a href="/dashboard" class="brand-link">
       <img src="./img/ros-r-only.png" alt="Profile Picture" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <p style="color: white"><span class="brand-text font-weight-light">HR System</span></p>
+      <p style="color: white"><span class="brand-text font-weight-light">HR Solutions</span></p>
       {{-- <p style="text-align: center; font-size: 15px; margin-top: -10px;"><span class="brand-text font-weight-light">HR System</span></p> --}}
     </a>
 
