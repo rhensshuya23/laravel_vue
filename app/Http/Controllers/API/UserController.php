@@ -18,12 +18,13 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->authorize('isAdmin');
     }
 
 
     public function index()
     {
-        // return ['my-message'=> 'This is my message'];
+        // $this->authorize('isAdmin');
         return User::latest()->paginate(10);
     }
 
@@ -115,6 +116,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $this->authorize('isAdmin');
+
         $user = User::findOrFail($id);
 
         $this->validateData($id);
@@ -137,6 +140,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        // $this->authorize('isAdmin');
+
         $user = User::findOrFail($id);
 
         $user->delete();

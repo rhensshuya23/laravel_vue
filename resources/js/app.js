@@ -71,6 +71,10 @@ const router = new VueRouter({
 })
 
 
+import GateAuth from './gate_auth.js'
+Vue.prototype.$gateAuth = new GateAuth(window.user);
+
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

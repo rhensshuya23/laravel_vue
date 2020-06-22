@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row mt-5">
+        <div class="row mt-5" v-if="$gateAuth.isAdmin()">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
@@ -152,10 +152,12 @@
                 // })
                 // .then(({data}) => (this.users = data.data))
                  // or like this
-                axios.get('api/user')
-                .then(response => {
-                  this.users = response.data;
-                })
+                 if(this.$gateAuth.isAdmin()) {
+                    axios.get('api/user')
+                    .then(response => {
+                      this.users = response.data;
+                    })
+                 }
             },
 
             createUser() {

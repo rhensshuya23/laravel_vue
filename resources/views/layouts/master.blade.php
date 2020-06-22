@@ -92,6 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
+          @can('isAdmin')
           <li class="nav-item">
             <router-link to="/users" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -108,6 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
+          @endcan
           <li class="nav-item">
             <router-link to="/contact-us" class="nav-link">
               <i class="nav-icon fas fa-envelope"></i>
@@ -158,13 +160,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      Anything you want
+      <a href="#">Developed by: Rhens - <b>ROS</b></a>
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2020 - </strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
+@auth
+  <script type="text/javascript">
+    window.user = @json(auth()->user());
+  </script>
+@endauth
 
 <!-- REQUIRED SCRIPTS -->
 <script type="text/javascript" src="/js/app.js"></script>
