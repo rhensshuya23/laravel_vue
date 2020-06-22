@@ -51,6 +51,9 @@
             <!-- /.card -->
           </div>
         </div>
+        <div v-if="!$gateAuth.isAdmin()">
+          <not-found></not-found>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
           <div class="modal-dialog">

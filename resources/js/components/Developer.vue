@@ -14,6 +14,9 @@
                 </div>
             </div>
         </div>
+        <div v-if="!$gateAuth.isAdmin()">
+          <not-found></not-found>
+        </div>
     </div>
 </template>
 
