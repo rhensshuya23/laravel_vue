@@ -104,7 +104,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <router-link to="/developer" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
-                Developer
+                For Developers
               </p>
             </router-link>
           </li>
@@ -112,7 +112,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <router-link to="/contact-us" class="nav-link">
               <i class="nav-icon fas fa-envelope"></i>
               <p>
-                Contact Us
+                Question/Issue
               </p>
             </router-link>
           </li>

@@ -21,4 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('{path}', 'HomeController@index')->where('path', '.*'); //This is the short solution to get rid of path home when entring url manually
 
-Route::post('contact-us', 'ContactDeveloperController@store');
+

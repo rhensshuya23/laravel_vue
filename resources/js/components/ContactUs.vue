@@ -72,11 +72,11 @@
         methods: {
             sendIssue() {
                 this.$Progress.start()
-                this.form.post('contact-us')
+                this.form.post('api/contact-us')
                 .then(() => {
                     toast.fire({
                       icon: 'success',
-                      title: 'Successfully sent user!'
+                      title: 'Successfully sent message!'
                     })
                     this.$Progress.finish()
                   })

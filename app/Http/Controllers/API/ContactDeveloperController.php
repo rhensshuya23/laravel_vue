@@ -1,17 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
-use App\ContactDeveloper;
 use Illuminate\Http\Request;
+use App\Mail\ContactFormDeveloper;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 
 class ContactDeveloperController extends Controller
 {
 
-	 // public function __construct()
-  //   {
-  //       $this->middleware('auth');
-  //   }
+	 public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
 
     public function store()
     {
@@ -23,7 +25,7 @@ class ContactDeveloperController extends Controller
     	]);
 
         // send an email 
-        Mail::to('abdullah.devexpert@gmail.com')->send(new ContactFormMail($data));
+        Mail::to('abdullah.devexpert@gmail.com')->send(new ContactFormDeveloper($data));
 
         // session()->flash('message', 'Thanks for your message. We\'ll be in touch!')
         // return redirect('contact-us');

@@ -1789,10 +1789,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.$Progress.start();
-      this.form.post('contact-us').then(function () {
+      this.form.post('api/contact-us').then(function () {
         toast.fire({
           icon: 'success',
-          title: 'Successfully sent user!'
+          title: 'Successfully sent message!'
         });
 
         _this.$Progress.finish();
