@@ -62,6 +62,7 @@ let routes = [
   { path: '/users', component: require('./components/Users.vue').default },
   { path: '/developer', component: require('./components/Developer.vue').default },
   { path: '/contact-us', component: require('./components/ContactUs.vue').default },
+  { path: '/*', component: require('./components/PageNotFound.vue').default },
 ]
 
 // We have to register our route here
@@ -105,6 +106,9 @@ Vue.component(
     'not-found',
     require('./components/PageNotFound.vue').default
 );
+
+Vue.component('pagination', require('laravel-vue-pagination'));
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
