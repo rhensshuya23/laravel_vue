@@ -169,7 +169,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ./wrapper -->
 @auth
   <script type="text/javascript">
-    window.userGlobal = @json(auth()->user());
+    window.userGlobal = @json(auth()->user()); //In laravel we can pass data to Javascript and read it as javascript object = json_encode(auth()->user())
+    console.log(@json(auth()->user()));
   </script>
 @endauth
 
