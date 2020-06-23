@@ -158,4 +158,20 @@ class UserController extends Controller
             'password' => 'sometimes|min:6',
         ]);
     }
+
+    public function searchUser() {
+
+        // return ["message" => "searching"];
+        if($searchUser = \Request::get('q')) {
+            $user = User::where(function($query) use ($searchUser){
+                $query->where('name', 'LIKE', "%$searchUser%")
+                        ->orWhere('email', 'LIKE', "%$searchUser%")
+                        ->orWhere('type', 'LIKE', "%$searchUser%");
+            })->paginate(20);
+        }else {
+            return User::latest()->paginate(10);
+        }
+
+        return $user;
+    }
 }
