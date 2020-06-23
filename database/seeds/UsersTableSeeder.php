@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             $users = [
             [
                 'name' => $faker->name,
-                'position' => 'employee',
+                'position' => 'Staff',
                 'email' => $faker->email,
                 'type' => 'user',
                 'bio' => 'I will do what is right.',
@@ -47,8 +47,8 @@ class UsersTableSeeder extends Seeder
         	],
 
         	[
-        		'name' => 'Rhens Unda',
-	        	'position' => 'Employee',
+        		'name' => 'Abdullah Abdulazis',
+	        	'position' => 'Owner',
 	        	'email' => 'user@gmail.com',
 	        	'type' => 'user',
 	        	'bio' => 'I will do what is right!',
