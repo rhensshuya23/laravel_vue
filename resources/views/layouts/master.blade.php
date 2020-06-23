@@ -170,7 +170,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- ./wrapper -->
 @auth
   <script type="text/javascript">
-    window.user = @json(auth()->user());
+    window.userGlobal = @json(auth()->user());
   </script>
 @endauth
 

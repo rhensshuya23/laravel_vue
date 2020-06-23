@@ -72,7 +72,7 @@ const router = new VueRouter({
 
 
 import GateAuth from './gate_auth.js'
-Vue.prototype.$gateAuth = new GateAuth(window.user);
+Vue.prototype.$gateAuth = new GateAuth(userGlobal); //userGlobal from master.blade.php
 
 
 /**
