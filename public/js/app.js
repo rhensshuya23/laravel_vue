@@ -66993,7 +66993,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _vm.$gateAuth.isAdmin()
-      ? _c("div", { staticClass: "row mt-5" }, [
+      ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "card" }, [
               _vm._m(0),
@@ -67913,7 +67913,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _vm.$gateAuth.isAdmin()
-      ? _c("div", { staticClass: "row mt-5" }, [
+      ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-header" }, [

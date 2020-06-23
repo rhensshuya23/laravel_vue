@@ -45,7 +45,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
       </div>
     </form>
 
-    
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <div class="user-panel d-flex"> 
+        <div class="info">
+          <p class="d-block" style="color: #7C7D7E">Rhens Shuya</p>
+        </div>
+        <div class="image"><img src="img/profile/{{Auth::user()->photo}}" alt="User Image" class="img-circle">
+          </div>
+      </div>
+      </li>
+    </ul>
   </nav>
   <!-- /.navbar -->
 
@@ -60,17 +70,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="img/profile/{{Auth::user()->photo}}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <p class="d-block white"><strong>{{ Auth::user()->name }}</strong></p>
-          {{-- <p class="d-block white">{{ strtoupper(Auth::user()->type) }}</p> --}}
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
