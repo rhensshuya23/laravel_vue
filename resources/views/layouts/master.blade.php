@@ -50,11 +50,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar green-bg elevation-4">
     <!-- Brand Logo -->
     <a href="/dashboard" class="brand-link">
-      <img src="./img/ros-r-only.png" alt="Profile Picture" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <p style="color: white"><span class="brand-text font-weight-light">HR Solutions</span></p>
+      <img src="./img/ros-r-only.png" alt="Profile Picture" class="brand-image img-circle" style="opacity: .8">
+      <p style="color: white"><span class="brand-text">HR Solutions</span></p>
       {{-- <p style="text-align: center; font-size: 15px; margin-top: -10px;"><span class="brand-text font-weight-light">HR System</span></p> --}}
     </a>
 
@@ -66,8 +66,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="img/profile/{{Auth::user()->photo}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-          <a href="#" class="d-block">{{ strtoupper(Auth::user()->type) }}</a>
+          <p class="d-block white"><strong>{{ Auth::user()->name }}</strong></p>
+          {{-- <p class="d-block white">{{ strtoupper(Auth::user()->type) }}</p> --}}
         </div>
       </div>
 
@@ -79,16 +79,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item">
             <router-link to="/dashboard" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
+              <i class="nav-icon fas fa-tachometer-alt white"></i>
+              <p class="white">
                 Dashboard
               </p>
             </router-link>
           </li>
           <li class="nav-item">
             <router-link to="/profile" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
+              <i class="nav-icon fas fa-user white"></i>
+              <p class="white">
                 Profile
               </p>
             </router-link>
@@ -96,16 +96,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @can('isAdmin')
           <li class="nav-item">
             <router-link to="/users" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
+              <i class="nav-icon fas fa-users white"></i>
+              <p class="white">
                 Users
               </p>
             </router-link>
           </li>
           <li class="nav-item">
             <router-link to="/developer" class="nav-link">
-              <i class="nav-icon fas fa-cogs"></i>
-              <p>
+              <i class="nav-icon fas fa-cogs white"></i>
+              <p class="white">
                 For Developers
               </p>
             </router-link>
@@ -113,8 +113,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @endcan
           <li class="nav-item">
             <router-link to="/contact-us" class="nav-link">
-              <i class="nav-icon fas fa-envelope"></i>
-              <p>
+              <i class="nav-icon fas fa-envelope white"></i>
+              <p class="white">
                 Question/Issue
               </p>
             </router-link>
@@ -123,8 +123,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <a class="nav-link" href="{{ route('logout') }}"
                onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
-                             <i class="nav-icon fas fa-sign-out-alt"></i>
-                <p>
+                             <i class="nav-icon fas fa-sign-out-alt white"></i>
+                <p class="white">
                   {{ __('Logout') }}
                 </p>
             </a>

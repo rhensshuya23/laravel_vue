@@ -30063,11 +30063,28 @@ readers do not read off random characters that represent icons */
 }
 
 .router-link-exact-active {
-  background-color: #3f51b5;
+  background-color: #acb5bfc7;
+  color: #ffffff !important;
+}
+
+.nav-link:hover {
+  background-color: #acb5bf7d;
   color: #ffffff !important;
 }
 
 .red {
   color: red;
+}
+
+.white {
+  color: #fff;
+}
+
+.orange-bg {
+  background-color: #F96332;
+}
+
+.green-bg {
+  background-color: #38C172;
 }
 
