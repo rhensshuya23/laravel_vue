@@ -27,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Passport::routes();
 
-        Passport::loadKeysFrom('app/storage/oauth-public.key');
+        // Passport::loadKeysFrom('app/storage/oauth-public.key');
     }
 }

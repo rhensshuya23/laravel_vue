@@ -85402,7 +85402,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 
 });
 
-Vue.prototype.$gateAuth = new _gate_auth_js__WEBPACK_IMPORTED_MODULE_5__["default"](userGlobal); //userGlobal from master.blade.php
+Vue.prototype.$gateAuth = new _gate_auth_js__WEBPACK_IMPORTED_MODULE_5__["default"](window.userGlobal); //userGlobal from master.blade.php
 
 /**
  * The following block of code may be used to automatically register your
