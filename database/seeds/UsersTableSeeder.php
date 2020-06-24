@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use  App\User;
-use Faker\Factory as Faker;
 
 class UsersTableSeeder extends Seeder
 {
@@ -14,24 +13,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-
-        foreach(range(1,10) as $index) {
-            $users = [
-            [
-                'name' => $faker->name,
-                'position' => 'Staff',
-                'email' => $faker->email,
-                'type' => 'user',
-                'bio' => 'I will do what is right.',
-                'password' => Hash::make('password'),
-                'remember_token' => null,
-                'created_at'     => '2019-09-13 19:21:30',
-                'updated_at'     => '2019-09-13 19:21:30',
-            ]
-          ];
-          User::insert($users);
-        };
 
         $users = [
         	[
