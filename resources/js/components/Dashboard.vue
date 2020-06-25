@@ -4,7 +4,7 @@
           <div class="container-fluid">
             <div class="row mb-2">
               <div class="col-sm-6">
-                <h5 class="m-0 text-dark">Don't stop to push yourself, everyday is a new beggining!
+                <h5 class="m-0 text-dark">Don't stop to push yourself, everyday is a new beggining!</h5>
               </div><!-- /.col -->
             </div><!-- /.row -->
 
