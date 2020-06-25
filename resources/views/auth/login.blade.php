@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>HR Solutions | Login</title>
+    <title>School Management System | Login</title>
     <script src="{{ asset('js/app.js') }}" defer></script>
     {{-- <script src="{{ asset('js/materialize.min.js') }}" defer></script> --}}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -56,7 +56,7 @@
   <div id="app"></div>
   <main>
     <center>
-      <h5 class="indigo-text">HR Solutions - ROS</h5>
+      <h5 class="indigo-text">School Management System - ROS</h5>
       <div class="section"></div>
 
       <div class="container">
