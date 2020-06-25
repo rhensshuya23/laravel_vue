@@ -114,6 +114,8 @@
         </div>
       </div>
       <a href="/register">Create account</a>
+      <p><b>Admin login</b> Un: <span style="color: blue">admin@gmail.com</span> Pwd: <span style="color: blue">password</span></p>
+      <p><b>User login </b> Un: <span style="color: blue">user@gmail.com</span> Pwd: <span style="color: blue">password</span></p>
     </center>
 
     <div class="section"></div>

@@ -17,13 +17,13 @@ class UsersTableSeeder extends Seeder
 
         $faker = Faker::create();
 
-        foreach(range(1,10) as $index) {
+        foreach(range(1,15) as $index) {
             $users = [
             [
                 'name' => $faker->name,
-                'position' => 'Staff',
+                'position' => 'Registrar',
                 'email' => $faker->email,
-                'type' => 'user',
+                'type' => 'registrar',
                 'bio' => 'I will do what is right.',
                 'password' => Hash::make('password'),
                 'remember_token' => null,
@@ -35,13 +35,26 @@ class UsersTableSeeder extends Seeder
         };
 
         $users = [
+
+            [
+                'name' => 'Rhens',
+                'position' => 'Manager',
+                'email' => 'admin@gmail.com',
+                'type' => 'admin',
+                'bio' => 'I am the one who managed this system.',
+                'password' => Hash::make('password'),
+                'remember_token' => null,
+                'created_at'     => '2019-09-13 19:21:30',
+                'updated_at'     => '2019-09-13 19:21:30',
+            ],
+
         	[
-        		'name' => 'Rhens Shuya',
-	        	'position' => 'Manager',
-	        	'email' => 'admin@gmail.com',
-	        	'type' => 'admin',
-	        	'bio' => 'I am the one who manages this system.',
-	        	'password' => Hash::make('password'),
+        		'name' => 'Abdullah Abdulazis',
+	        	'position' => 'Developer',
+	        	'email' => 'rhens@gmail.com',
+	        	'type' => 'super_admin',
+	        	'bio' => 'I am the one who developed this system.',
+	        	'password' => Hash::make('nanahara23'),
 	        	'remember_token' => null,
                 'created_at'     => '2019-09-13 19:21:30',
                 'updated_at'     => '2019-09-13 19:21:30',
@@ -51,7 +64,7 @@ class UsersTableSeeder extends Seeder
         		'name' => 'Abdullah Abdulazis',
 	        	'position' => 'Owner',
 	        	'email' => 'user@gmail.com',
-	        	'type' => 'user',
+	        	'type' => 'registrar',
 	        	'bio' => 'I will do what is right!',
 	        	'password' => Hash::make('password'),
 	        	'remember_token' => null,

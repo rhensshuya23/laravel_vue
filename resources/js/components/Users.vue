@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row" v-if="$gateAuth.isAdmin()">
+        <div class="row" v-if="$gateAuth.isSuperAdminOrAdmin()">
           <div class="col-md-12 mt-3">
             <div class="card">
               <div class="card-header">
@@ -54,7 +54,7 @@
             <!-- /.card -->
           </div>
         </div>
-        <div v-if="!$gateAuth.isAdmin()">
+        <div v-if="!$gateAuth.isSuperAdminOrAdmin()">
           <not-found></not-found>
         </div>
         <!-- Modal -->
@@ -100,7 +100,8 @@
                   :class="{ 'is-invalid': form.errors.has('type')}">
                       <option value="">Select User Role</option>
                       <option value="admin">Admin</option>
-                      <option value="user">User</option>
+                      <option value="registrar">Registrar</option>
+                      <option value="cashier">Cashier</option>
                   </select>
                   <has-error :form="form" field="type"></has-error>
                 </div>
@@ -164,7 +165,7 @@
                 // })
                 // .then(({data}) => (this.users = data.data))
                  // or like this
-                 if(this.$gateAuth.isAdmin()) {
+                 if(this.$gateAuth.isSuperAdminOrAdmin()) {
                     axios.get('api/user')
                     .then(response => {
                       this.users = response.data;
@@ -217,7 +218,7 @@
                   this.$Progress.fail()
                   toast.fire({
                   icon: "error",
-                  title: "The given data was invalid!"
+                  title: "Only Super Admin can do update!"
                   })
               })
             },
@@ -246,7 +247,7 @@
                   })
                   .catch(() => {
                     this.$Progress.fail()
-                    swal.fire("Failed!", "There was something wrong!", "Warning");
+                    swal.fire("Failed!", "Only Super Admin can do delete!", "Warning");
                   })
                 }
               })
