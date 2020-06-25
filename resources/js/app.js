@@ -62,6 +62,9 @@ let routes = [
   { path: '/users', component: require('./components/Users.vue').default },
   { path: '/developer', component: require('./components/Developer.vue').default },
   { path: '/contact-us', component: require('./components/ContactUs.vue').default },
+  { path: '/employees', component: require('./components/Employees.vue').default },
+  { path: '/new-students', component: require('./components/NewStudents.vue').default },
+  { path: '/old-students', component: require('./components/OldStudents.vue').default },
   { path: '/*', component: require('./components/PageNotFound.vue').default },
 ]
 

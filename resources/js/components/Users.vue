@@ -1,10 +1,10 @@
 <template>
     <div class="container">
         <div class="row" v-if="$gateAuth.isAdmin()">
-          <div class="col-md-12">
+          <div class="col-md-12 mt-3">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">User Component</h3>
+                <h3 class="card-title">User Lists</h3>
 
                 <div class="card-tools">
                   <!-- <button class="btn btn-success" data-toggle="modal" data-target="#userModal"><i class="fas fa-user-plus"></i> Add New</button> -->

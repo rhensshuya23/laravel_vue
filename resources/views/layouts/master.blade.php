@@ -64,7 +64,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Brand Logo -->
     <a href="/dashboard" class="brand-link">
       <img src="./img/ros-r-only.png" alt="Profile Picture" class="brand-image img-circle" style="opacity: .8">
-      <p style="color: white"><span class="brand-text">HR Solutions</span></p>
+      <p style="color: white"><span class="brand-text">School Management</span></p>
+      <p style="color: white; text-align: center; margin-top: -20px; margin-right: 30px;"><span class="brand-text">System</span></p>
       {{-- <p style="text-align: center; font-size: 15px; margin-top: -10px;"><span class="brand-text font-weight-light">HR System</span></p> --}}
     </a>
 
@@ -95,11 +96,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
           @can('isAdmin')
           <li class="nav-item">
             <router-link to="/users" class="nav-link">
-              <i class="nav-icon fas fa-users white"></i>
+              <i class="nav-icon fas fa-users-cog white"></i>
               <p class="white">
                 Users
               </p>
             </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link to="/employees" class="nav-link">
+              <i class="nav-icon fas fa-user-friends white"></i>
+              <p class="white">
+                Employees
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users white"></i>
+              <p class="white">
+                Students
+                <i class="right fas fa-angle-left white"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="display: none;">
+              <li class="nav-item">
+                <router-link to="/new-students" class="nav-link">
+                  <i class="nav-icon fas fa-circle white"></i>
+                  <p class="white">New Students</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/old-students" class="nav-link">
+                  <i class="nav-icon fas fa-circle white"></i>
+                  <p class="white">Old Students</p>
+                </router-link>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <router-link to="/developer" class="nav-link">

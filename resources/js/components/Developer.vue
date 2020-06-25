@@ -1,10 +1,10 @@
 <template>
     <div class="container">
         <div class="row" v-if="$gateAuth.isAdmin()">
-            <div class="col-md-12">
+            <div class="col-md-12 mt-3">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Developer Component</h3>
+                        <h3 class="card-title">For Developer</h3>
                     </div>
                     <div class="card-body">
                         <passport-clients></passport-clients>

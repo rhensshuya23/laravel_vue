@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
 
                 <!-- Profile Image -->
                 <div class="card card-primary card-outline">
@@ -36,10 +36,10 @@
                 <!-- /.card -->
             </div>
 
-            <div class="col-md-9">
+            <div class="col-md-9 mt-3">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Profile Component</h3>
+                        <h3 class="card-title">Profile</h3>
                     </div>
 
                     <div class="card-body">
