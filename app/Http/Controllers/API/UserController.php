@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -164,9 +165,9 @@ class UserController extends Controller
         // return ["message" => "searching"];
         if($searchUser = \Request::get('q')) {
             $user = User::where(function($query) use ($searchUser){
-                $query->where('name', 'LIKE', "%$searchUser%")
-                        ->orWhere('email', 'LIKE', "%$searchUser%")
-                        ->orWhere('type', 'LIKE', "%$searchUser%");
+                $query->where(Str::lower('name'), 'LIKE', "%$searchUser%")
+                        ->orWhere(Str::lower('email'), 'LIKE', "%$searchUser%")
+                        ->orWhere(Str::lower('type'), 'LIKE', "%$searchUser%");
             })->paginate(20);
         }else {
             return User::latest()->paginate(10);
