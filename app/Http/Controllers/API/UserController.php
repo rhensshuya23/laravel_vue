@@ -162,12 +162,13 @@ class UserController extends Controller
 
     public function searchUser() {
 
+
         // return ["message" => "searching"];
         if($searchUser = \Request::get('q')) {
             $user = User::where(function($query) use ($searchUser){
-                $query->where(Str::lower('name'), 'LIKE', "%$searchUser%")
-                        ->orWhere(Str::lower('email'), 'LIKE', "%$searchUser%")
-                        ->orWhere(Str::lower('type'), 'LIKE', "%$searchUser%");
+                $query->where(Str::lower('name'), 'ILIKE', "%$searchUser%")
+                        ->orWhere(Str::lower('email'), 'ILIKE', "%$searchUser%")
+                        ->orWhere(Str::lower('type'), 'ILIKE', "%$searchUser%");
             })->paginate(20);
         }else {
             return User::latest()->paginate(10);
