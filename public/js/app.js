@@ -2357,7 +2357,7 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         position: '',
         email: '',
-        password: '',
+        // password: '',
         type: '',
         bio: '',
         photo: ''
@@ -68620,10 +68620,11 @@ var render = function() {
                           ],
                           staticClass: "form-control",
                           attrs: {
+                            disabled: "",
                             type: "text",
                             name: "password",
                             id: "password",
-                            placeholder: "Password"
+                            placeholder: "The password is temporary disabled"
                           },
                           domProps: { value: _vm.form.password },
                           on: {

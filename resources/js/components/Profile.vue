@@ -64,7 +64,7 @@
                                 <div class="form-group row">
                                     <label for="password" class="col-sm-2 col-form-label">Password</label>
                                     <div class="col-sm-10">
-                                    <input v-model="form.password" type="text" name="password" class="form-control" id="password" placeholder="Password">
+                                    <input disabled="" v-model="form.password" type="text" name="password" class="form-control" id="password" placeholder="The password is temporary disabled">
                                     <has-error :form="form" field="password"></has-error>
                                     </div>
                                 </div>
@@ -100,7 +100,7 @@
                 name: '',
                 position: '',
                 email: '',
-                password: '',
+                // password: '',
                 type: '',
                 bio: '',
                 photo: ''
