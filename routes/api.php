@@ -23,3 +23,4 @@ Route::get('profile','API\UserController@profile');
 Route::put('profile','API\UserController@updateProfile');
 Route::get('findUser','API\UserController@searchUser');
 Route::post('contact-us', 'API\ContactDeveloperController@store');
+Route::apiResources(['employee'=> 'API\UserController']);
