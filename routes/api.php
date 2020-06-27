@@ -26,3 +26,4 @@ Route::post('contact-us', 'API\ContactDeveloperController@store');
 // Route::apiResources(['employee'=> 'API\EmployeesController']);
 Route::post('employee', 'API\EmployeesController@store');
 Route::get('employee', 'API\EmployeesController@index');
+Route::delete('employee/{employee}', 'API\EmployeesController@destroy');

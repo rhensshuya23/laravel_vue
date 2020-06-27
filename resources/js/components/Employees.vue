@@ -4,7 +4,7 @@
           <div class="col-md-12 mt-3">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">employee Lists</h3>
+                <h3 class="card-title">Employee Lists</h3>
 
                 <div class="card-tools">
                   <!-- <button class="btn btn-success" data-toggle="modal" data-target="#employeeModal"><i class="fas fa-employee-plus"></i> Add New</button> -->
@@ -44,7 +44,7 @@
                               <i class="fa fa-edit blue"></i>
                           </a>
                           /
-                          <a href="" @click.prevent="deleteemployee(employee.id)">
+                          <a href="" @click.prevent="deleteEmployee(employee.id)">
                               <i class="fa fa-trash red"></i>
                           </a>
                       </td>
@@ -259,35 +259,35 @@
         //       })
         //     },
 
-        //     deleteemployee(id) {
-        //       swal.fire({
-        //       title: 'Are you sure?',
-        //       text: "You won't be able to revert this!",
-        //       icon: 'warning',
-        //       showCancelButton: true,
-        //       confirmButtonColor: '#3085d6',
-        //       cancelButtonColor: '#d33',
-        //       confirmButtonText: 'Yes, delete it!'
-        //        }).then((result) => {
-        //         if(result.value) { //if result is true then
-        //           this.$Progress.start()
-        //           this.form.delete('api/employee/'+id)
-        //           .then(()=> {
-        //               swal.fire(
-        //                 'Deleted!',
-        //                 'employee has been deleted.',
-        //                 'success'
-        //               )
-        //             Fire.$emit('employeeEvent')
-        //             this.$Progress.finish()
-        //           })
-        //           .catch(() => {
-        //             this.$Progress.fail()
-        //             swal.fire("Failed!", "Only Super Admin can do delete!", "Warning");
-        //           })
-        //         }
-        //       })
-        //      }
+            deleteEmployee(id) {
+              swal.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+               }).then((result) => {
+                if(result.value) { //if result is true then
+                  this.$Progress.start()
+                  this.form.delete('api/employee/'+id)
+                  .then(()=> {
+                      swal.fire(
+                        'Deleted!',
+                        'Employee has been deleted.',
+                        'success'
+                      )
+                    Fire.$emit('employeeEvent')
+                    this.$Progress.finish()
+                  })
+                  .catch(() => {
+                    this.$Progress.fail()
+                    swal.fire("Failed!", "Check the fill up form!", "Warning");
+                  })
+                }
+              })
+             }
         },
         created() {
           // Fire.$on('searching',() => {

@@ -2329,7 +2329,8 @@ __webpack_require__.r(__webpack_exports__);
           title: "The given data was invalid!"
         });
       });
-    } //     editModal(employeeData) {
+    },
+    //     editModal(employeeData) {
     //       this.editModeEmployee = true
     //       this.form.reset()
     //       $('#employeeModal').modal('show')
@@ -2356,39 +2357,38 @@ __webpack_require__.r(__webpack_exports__);
     //           })
     //       })
     //     },
-    //     deleteemployee(id) {
-    //       swal.fire({
-    //       title: 'Are you sure?',
-    //       text: "You won't be able to revert this!",
-    //       icon: 'warning',
-    //       showCancelButton: true,
-    //       confirmButtonColor: '#3085d6',
-    //       cancelButtonColor: '#d33',
-    //       confirmButtonText: 'Yes, delete it!'
-    //        }).then((result) => {
-    //         if(result.value) { //if result is true then
-    //           this.$Progress.start()
-    //           this.form.delete('api/employee/'+id)
-    //           .then(()=> {
-    //               swal.fire(
-    //                 'Deleted!',
-    //                 'employee has been deleted.',
-    //                 'success'
-    //               )
-    //             Fire.$emit('employeeEvent')
-    //             this.$Progress.finish()
-    //           })
-    //           .catch(() => {
-    //             this.$Progress.fail()
-    //             swal.fire("Failed!", "Only Super Admin can do delete!", "Warning");
-    //           })
-    //         }
-    //       })
-    //      }
+    deleteEmployee: function deleteEmployee(id) {
+      var _this3 = this;
 
+      swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          //if result is true then
+          _this3.$Progress.start();
+
+          _this3.form["delete"]('api/employee/' + id).then(function () {
+            swal.fire('Deleted!', 'Employee has been deleted.', 'success');
+            Fire.$emit('employeeEvent');
+
+            _this3.$Progress.finish();
+          })["catch"](function () {
+            _this3.$Progress.fail();
+
+            swal.fire("Failed!", "Check the fill up form!", "Warning");
+          });
+        }
+      });
+    }
   },
   created: function created() {
-    var _this3 = this;
+    var _this4 = this;
 
     // Fire.$on('searching',() => {
     //       let query = this.$parent.search;
@@ -2401,7 +2401,7 @@ __webpack_require__.r(__webpack_exports__);
     //   })
     this.displayemployees();
     Fire.$on('employeeEvent', function () {
-      _this3.displayemployees();
+      _this4.displayemployees();
     });
   }
 });
@@ -68044,7 +68044,7 @@ var render = function() {
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "card-header" }, [
                 _c("h3", { staticClass: "card-title" }, [
-                  _vm._v("employee Lists")
+                  _vm._v("Employee Lists")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-tools" }, [
@@ -68130,7 +68130,7 @@ var render = function() {
                               on: {
                                 click: function($event) {
                                   $event.preventDefault()
-                                  return _vm.deleteemployee(employee.id)
+                                  return _vm.deleteEmployee(employee.id)
                                 }
                               }
                             },
