@@ -175,7 +175,7 @@ class UserController extends Controller
                 $query->where(Str::lower('name'), 'ILIKE', "%$searchUser%")
                         ->orWhere(Str::lower('email'), 'ILIKE', "%$searchUser%")
                         ->orWhere(Str::lower('type'), 'ILIKE', "%$searchUser%");
-            })->paginate(20);
+            })->paginate(10);
         }else {
             return User::latest()->paginate(10);
         }

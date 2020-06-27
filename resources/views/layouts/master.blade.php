@@ -49,7 +49,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <li class="nav-item">
         <div class="user-panel d-flex"> 
         <div class="info">
-          <p class="d-block" style="color: #7C7D7E">Rhens Shuya</p>
+          <p class="d-block" style="color: #7C7D7E">{{ Auth::user()->name }}</p>
         </div>
         <div class="image">
           @if ( Auth::user()->photo == "profile.png" )

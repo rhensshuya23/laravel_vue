@@ -23,6 +23,8 @@ class CreateEmployeesTable extends Migration
             $table->bigInteger('salary');
             $table->string('position')->default('Employee');
             $table->string('email')->unique();
+            $table->integer('user_id');
+            $table->string('user_name');
             $table->timestamps();
         });
     }

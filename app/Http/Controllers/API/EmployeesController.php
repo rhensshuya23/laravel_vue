@@ -27,16 +27,6 @@ class EmployeesController extends Controller
         return Employee::latest()->paginate(10);
     }
 
-    // public function create()
-    // {
-        
-    // }
-
-
-    public function edit()
-    {
-        
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -49,6 +39,8 @@ class EmployeesController extends Controller
        $this->validateData(0); 
 
         return Employee::create([
+            'user_id' => auth('api')->user()->id,
+            'user_name' => auth('api')->user()->name,
             'full_name' => $request['full_name'],
             'age' => $request['age'],
             'contact_no' => $request['contact_no'],
@@ -123,16 +115,16 @@ class EmployeesController extends Controller
 
     public function searchEmployee() 
     {
-        // if($searchEmployee = \Request::get('q')) {
-        //     $employee = Employee::where(function($query) use ($searchEmployee){
-        //         $query->where(Str::lower('first_name'), 'ILIKE', "%$searchEmployee%")
-        //                 ->orWhere(Str::lower('last_name'), 'ILIKE', "%$searchEmployee%")
-        //                 ->orWhere(Str::lower('id_number'), 'ILIKE', "%$searchEmployee%")
-        //     })->paginate(20);
-        // }else {
-        //     return Employee::latest()->paginate(10);
-        // }
+        if($searchEmployee = \Request::get('q')) {
+            $employee = Employee::where(function($query) use ($searchEmployee){
+                $query->where(Str::lower('full_name'), 'ILIKE', "%$searchEmployee%")
+                        ->orWhere(Str::lower('position'), 'ILIKE', "%$searchEmployee%")
+                        ->orWhere(Str::lower('email'), 'ILIKE', "%$searchEmployee%");
+            })->paginate(10);
+        }else {
+            return Employee::latest()->paginate(10);
+        }
 
-        // return $employee;
+        return $employee;
     }
 }

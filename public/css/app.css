@@ -30088,3 +30088,27 @@ readers do not read off random characters that represent icons */
   background-color: #38C172;
 }
 
+table > thead > tr > .th-50 {
+  min-width: 50px;
+}
+
+table > thead > tr > .th-80 {
+  min-width: 80px;
+}
+
+table > thead > tr > .th-120 {
+  min-width: 120px;
+}
+
+table > thead > tr > .th-150 {
+  min-width: 150px;
+}
+
+table > thead > tr > .th-200 {
+  min-width: 200px;
+}
+
+table > thead > tr > .th-300 {
+  min-width: 300px;
+}
+

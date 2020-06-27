@@ -2283,33 +2283,37 @@ __webpack_require__.r(__webpack_exports__);
         address: '',
         status: '',
         salary: '',
-        email: ''
+        position: '',
+        email: '',
+        user_name: ''
       })
     };
   },
   methods: {
-    // getResults(page = 1) {
-    //   axios.get('api/employee?page=' + page)
-    //     .then(response => {
-    //       this.employees = response.data;
-    //     });
-    // },
+    getResults: function getResults() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/employee?page=' + page).then(function (response) {
+        _this.employees = response.data;
+      });
+    },
     addModalEmployee: function addModalEmployee() {
       this.editModeEmployee = false;
       this.form.reset();
       $('#employeeModal').modal('show');
     },
     displayemployees: function displayemployees() {
-      var _this = this;
+      var _this2 = this;
 
       if (this.$gateAuth.isSuperAdminOrAdmin()) {
         axios.get('api/employee').then(function (response) {
-          _this.employees = response.data;
+          _this2.employees = response.data;
         });
       }
     },
     create_employee: function create_employee() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$Progress.start();
       this.form.post('api/employee').then(function () {
@@ -2320,9 +2324,9 @@ __webpack_require__.r(__webpack_exports__);
           title: 'Successfully created employee!'
         });
 
-        _this2.$Progress.finish();
+        _this3.$Progress.finish();
       })["catch"](function () {
-        _this2.$Progress.fail();
+        _this3.$Progress.fail();
 
         toast.fire({
           icon: "error",
@@ -2330,35 +2334,36 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
-    //     editModal(employeeData) {
-    //       this.editModeEmployee = true
-    //       this.form.reset()
-    //       $('#employeeModal').modal('show')
-    //       this.form.fill(employeeData)
-    //     },
-    //     update_employee() {
-    //       // console.log("Edit Mode")
-    //       this.$Progress.start()
-    //       this.form.put('api/employee/'+this.form.id)
-    //       .then(() => {
-    //         Fire.$emit('employeeEvent')
-    //         $('#employeeModal').modal('hide')
-    //         toast.fire({
-    //           icon: 'success',
-    //           title: 'Successfully updated employee!'
-    //         })
-    //         this.$Progress.finish()
-    //       })
-    //       .catch(() =>{
-    //           this.$Progress.fail()
-    //           toast.fire({
-    //           icon: "error",
-    //           title: "Only Super Admin can do update!"
-    //           })
-    //       })
-    //     },
+    editModal: function editModal(employeeData) {
+      this.editModeEmployee = true;
+      this.form.reset();
+      $('#employeeModal').modal('show');
+      this.form.fill(employeeData);
+    },
+    update_employee: function update_employee() {
+      var _this4 = this;
+
+      this.$Progress.start();
+      this.form.put('api/employee/' + this.form.id).then(function () {
+        Fire.$emit('employeeEvent');
+        $('#employeeModal').modal('hide');
+        toast.fire({
+          icon: 'success',
+          title: 'Successfully updated employee!'
+        });
+
+        _this4.$Progress.finish();
+      })["catch"](function () {
+        _this4.$Progress.fail();
+
+        toast.fire({
+          icon: "error",
+          title: "Check the fill up form!"
+        });
+      });
+    },
     deleteEmployee: function deleteEmployee(id) {
-      var _this3 = this;
+      var _this5 = this;
 
       swal.fire({
         title: 'Are you sure?',
@@ -2371,15 +2376,15 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           //if result is true then
-          _this3.$Progress.start();
+          _this5.$Progress.start();
 
-          _this3.form["delete"]('api/employee/' + id).then(function () {
+          _this5.form["delete"]('api/employee/' + id).then(function () {
             swal.fire('Deleted!', 'Employee has been deleted.', 'success');
             Fire.$emit('employeeEvent');
 
-            _this3.$Progress.finish();
+            _this5.$Progress.finish();
           })["catch"](function () {
-            _this3.$Progress.fail();
+            _this5.$Progress.fail();
 
             swal.fire("Failed!", "Check the fill up form!", "Warning");
           });
@@ -2388,20 +2393,17 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this4 = this;
+    var _this6 = this;
 
-    // Fire.$on('searching',() => {
-    //       let query = this.$parent.search;
-    //       axios.get('api/findemployee?q=' + query)
-    //       .then((data) => {
-    //           this.employees = data.data
-    //       })
-    //       .catch(() => {
-    //       })
-    //   })
+    Fire.$on('searching', function () {
+      var query = _this6.$parent.search;
+      axios.get('api/find-employee?q=' + query).then(function (data) {
+        _this6.employees = data.data;
+      })["catch"](function () {});
+    });
     this.displayemployees();
     Fire.$on('employeeEvent', function () {
-      _this4.displayemployees();
+      _this6.displayemployees();
     });
   }
 });
@@ -68062,7 +68064,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body table-responsive p-0" }, [
+              _c("div", { staticClass: "table-responsive" }, [
                 _c("table", { staticClass: "table table-hover" }, [
                   _vm._m(0),
                   _vm._v(" "),
@@ -68070,42 +68072,6 @@ var render = function() {
                     "tbody",
                     _vm._l(_vm.employees.data, function(employee) {
                       return _c("tr", { key: employee.id }, [
-                        _c("td", [_vm._v(_vm._s(employee.id))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("firtCharCapitalize")(employee.full_name)
-                            )
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(employee.age))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(employee.contact_no))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("firtCharCapitalize")(employee.address)
-                            )
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(employee.status))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(employee.salary))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(
-                              _vm._f("firtCharCapitalize")(employee.position)
-                            )
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(employee.email))]),
-                        _vm._v(" "),
                         _c("td", [
                           _c(
                             "a",
@@ -68136,7 +68102,43 @@ var render = function() {
                             },
                             [_c("i", { staticClass: "fa fa-trash red" })]
                           )
-                        ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("firtCharCapitalize")(employee.full_name)
+                            )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.age))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.contact_no))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.status))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.salary))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("firtCharCapitalize")(employee.position)
+                            )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.email))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("firtCharCapitalize")(employee.address)
+                            )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(employee.user_name))])
                       ])
                     }),
                     0
@@ -68144,7 +68146,17 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-footer" })
+              _c(
+                "div",
+                { staticClass: "card-footer" },
+                [
+                  _c("pagination", {
+                    attrs: { data: _vm.employees },
+                    on: { "pagination-change-page": _vm.getResults }
+                  })
+                ],
+                1
+              )
             ])
           ])
         ])
@@ -68670,27 +68682,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "thead-dark" }, [
       _c("tr", [
-        _c("th", [_vm._v("ID NO.")]),
+        _c("th", [_vm._v("MODIFY")]),
         _vm._v(" "),
-        _c("th", [_vm._v("FULL NAME")]),
+        _c("th", { staticClass: "th-200" }, [_vm._v("FULL NAME")]),
         _vm._v(" "),
-        _c("th", [_vm._v("AGE")]),
+        _c("th", { staticClass: "th-50" }, [_vm._v("AGE")]),
         _vm._v(" "),
-        _c("th", [_vm._v("CONTACT NO.")]),
+        _c("th", { staticClass: "th-120" }, [_vm._v("CONTACT NO.")]),
         _vm._v(" "),
-        _c("th", [_vm._v("ADDRESS")]),
+        _c("th", { staticClass: "th-80" }, [_vm._v("STATUS")]),
         _vm._v(" "),
-        _c("th", [_vm._v("STATUS")]),
+        _c("th", { staticClass: "th-80" }, [_vm._v("SALARY")]),
         _vm._v(" "),
-        _c("th", [_vm._v("SALARY")]),
+        _c("th", { staticClass: "th-150" }, [_vm._v("POSITION")]),
         _vm._v(" "),
-        _c("th", [_vm._v("POSITION")]),
+        _c("th", { staticClass: "th-200" }, [_vm._v("EMAIL")]),
         _vm._v(" "),
-        _c("th", [_vm._v("EMAIL")]),
+        _c("th", { staticClass: "th-300" }, [_vm._v("ADDRESS")]),
         _vm._v(" "),
-        _c("th", [_vm._v("MODIFY")])
+        _c("th", { staticClass: "th-150" }, [_vm._v("ADDED BY")])
       ])
     ])
   },

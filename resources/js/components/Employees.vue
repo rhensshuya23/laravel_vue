@@ -12,33 +12,24 @@
                 </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0">
+              <div class="table-responsive">
                 <table class="table table-hover">
-                  <thead>
+                  <thead class="thead-dark">
                     <tr>
-                      <th>ID NO.</th>
-                      <th>FULL NAME</th>
-                      <th>AGE</th>
-                      <th>CONTACT NO.</th>
-                      <th>ADDRESS</th>
-                      <th>STATUS</th>
-                      <th>SALARY</th>
-                      <th>POSITION</th>
-                      <th>EMAIL</th>
                       <th>MODIFY</th>
+                      <th class="th-200">FULL NAME</th>
+                      <th class="th-50">AGE</th>
+                      <th class="th-120">CONTACT NO.</th>
+                      <th class="th-80">STATUS</th>
+                      <th class="th-80">SALARY</th>
+                      <th class="th-150">POSITION</th>
+                      <th class="th-200">EMAIL</th>
+                      <th class="th-300">ADDRESS</th>
+                      <th class="th-150">ADDED BY</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="employee in employees.data" :key="employee.id">
-                      <td>{{employee.id}}</td>
-                      <td>{{employee.full_name | firtCharCapitalize }}</td>
-                      <td>{{employee.age}}</td>
-                      <td>{{employee.contact_no}}</td>
-                      <td>{{employee.address | firtCharCapitalize}}</td>
-                      <td>{{employee.status}}</td>
-                      <td>{{employee.salary}}</td>
-                      <td>{{employee.position | firtCharCapitalize}}</td>
-                      <td>{{employee.email}}</td>
                       <td>
                           <a href="" @click.prevent="editModal(employee)">
                               <i class="fa fa-edit blue"></i>
@@ -48,13 +39,22 @@
                               <i class="fa fa-trash red"></i>
                           </a>
                       </td>
+                      <td>{{employee.full_name | firtCharCapitalize }}</td>
+                      <td>{{employee.age}}</td>
+                      <td>{{employee.contact_no}}</td>
+                      <td>{{employee.status}}</td>
+                      <td>{{employee.salary}}</td>
+                      <td>{{employee.position | firtCharCapitalize}}</td>
+                      <td>{{employee.email}}</td>
+                      <td>{{employee.address | firtCharCapitalize}}</td>
+                      <td>{{employee.user_name}}</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
-                <!-- <pagination :data="employees" @pagination-change-page="getResults"></pagination> -->
+                <pagination :data="employees" @pagination-change-page="getResults"></pagination>
               </div>
             </div>
             <!-- /.card -->
@@ -184,17 +184,19 @@
                 address: '',
                 status: '',
                 salary: '',
-                email: ''
+                position: '',
+                email: '',
+                user_name: ''
             })
             }
         },
         methods: {
-            // getResults(page = 1) {
-            //   axios.get('api/employee?page=' + page)
-            //     .then(response => {
-            //       this.employees = response.data;
-            //     });
-            // },
+            getResults(page = 1) {
+              axios.get('api/employee?page=' + page)
+                .then(response => {
+                  this.employees = response.data;
+                });
+            },
             addModalEmployee() {
               this.editModeEmployee = false
               this.form.reset()
@@ -230,34 +232,33 @@
                   })
             },
 
-        //     editModal(employeeData) {
-        //       this.editModeEmployee = true
-        //       this.form.reset()
-        //       $('#employeeModal').modal('show')
-        //       this.form.fill(employeeData)
-        //     },
+            editModal(employeeData) {
+              this.editModeEmployee = true
+              this.form.reset()
+              $('#employeeModal').modal('show')
+              this.form.fill(employeeData)
+            },
 
-        //     update_employee() {
-        //       // console.log("Edit Mode")
-        //       this.$Progress.start()
-        //       this.form.put('api/employee/'+this.form.id)
-        //       .then(() => {
-        //         Fire.$emit('employeeEvent')
-        //         $('#employeeModal').modal('hide')
-        //         toast.fire({
-        //           icon: 'success',
-        //           title: 'Successfully updated employee!'
-        //         })
-        //         this.$Progress.finish()
-        //       })
-        //       .catch(() =>{
-        //           this.$Progress.fail()
-        //           toast.fire({
-        //           icon: "error",
-        //           title: "Only Super Admin can do update!"
-        //           })
-        //       })
-        //     },
+            update_employee() {
+              this.$Progress.start()
+              this.form.put('api/employee/'+this.form.id)
+              .then(() => {
+                Fire.$emit('employeeEvent')
+                $('#employeeModal').modal('hide')
+                toast.fire({
+                  icon: 'success',
+                  title: 'Successfully updated employee!'
+                })
+                this.$Progress.finish()
+              })
+              .catch(() =>{
+                  this.$Progress.fail()
+                  toast.fire({
+                  icon: "error",
+                  title: "Check the fill up form!"
+                  })
+              })
+            },
 
             deleteEmployee(id) {
               swal.fire({
@@ -290,15 +291,15 @@
              }
         },
         created() {
-          // Fire.$on('searching',() => {
-          //       let query = this.$parent.search;
-          //       axios.get('api/findemployee?q=' + query)
-          //       .then((data) => {
-          //           this.employees = data.data
-          //       })
-          //       .catch(() => {
-          //       })
-          //   })
+          Fire.$on('searching',() => {
+                let query = this.$parent.search;
+                axios.get('api/find-employee?q=' + query)
+                .then((data) => {
+                    this.employees = data.data
+                })
+                .catch(() => {
+                })
+            })
           
             this.displayemployees()
             Fire.$on('employeeEvent', () => {
