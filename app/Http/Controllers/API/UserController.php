@@ -27,6 +27,10 @@ class UserController extends Controller
     {
         // $this->authorize('isAdmin','isSuperAdmin');
         return User::latest()->paginate(10);
+
+        // $user = User::latest()->paginate(10);
+
+        // return compact('user');
     }
 
     /**

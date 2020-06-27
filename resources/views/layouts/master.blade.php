@@ -51,8 +51,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <div class="info">
           <p class="d-block" style="color: #7C7D7E">Rhens Shuya</p>
         </div>
-        <div class="image"><img src="img/profile/{{Auth::user()->photo}}" alt="User Image" class="img-circle">
-          </div>
+        <div class="image">
+          @if ( Auth::user()->photo == "profile.png" )
+          <img src="img/default.png" alt="User Image" class="img-circle">
+          @else
+          <img src="img/profile/{{Auth::user()->photo}}" alt="User Image" class="img-circle">
+          @endif
+        </div>
       </div>
       </li>
     </ul>
@@ -207,6 +212,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 @endauth
 
 <!-- REQUIRED SCRIPTS -->
-<script type="text/javascript" src="/js/app.js"></script>
+{{-- <script type="text/javascript" src="/js/app.js"></script> --}}
+<script src="{{mix('/js/app.js')}}"></script>
 </body>
 </html>

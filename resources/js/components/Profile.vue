@@ -48,7 +48,7 @@
                                 <div class="form-group row">
                                     <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                     <div class="col-sm-10">
-                                    <input v-model="form.name" type="email" class="form-control" id="inputName" placeholder="Name">
+                                    <input v-model="form.name" type="text" class="form-control" id="inputName" placeholder="Name">
                                     <has-error :form="form" field="name"></has-error>
                                     </div>
                                 </div>
@@ -114,6 +114,9 @@
             },
             getProfilePhoto() {
                 let photo = (this.form.photo.length > 100) ? this.form.photo : "/img/profile/"+this.form.photo;
+                if(this.form.photo == "profile.png") {
+                    photo = "img/default.png"
+                }
                 return photo;
             },
             updatePhoto(fileEvent) {
@@ -153,6 +156,7 @@
                 .catch(() => {
                     this.$Progress.fail()
                 })
+                window.location.reload();
             }
         },
         created() {
