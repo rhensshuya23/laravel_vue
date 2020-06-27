@@ -2299,23 +2299,17 @@ __webpack_require__.r(__webpack_exports__);
       this.form.reset();
       $('#employeeModal').modal('show');
     },
-    // displayemployees() {
-    //     // axios.get('api/employee').then(({data}) => (this.employees = data.data));
-    //     // axios({
-    //     //     method: 'get',
-    //     //     url: 'api/employee'
-    //     // })
-    //     // .then(({data}) => (this.employees = data.data))
-    //      // or like this
-    //      if(this.$gateAuth.isSuperAdminOrAdmin()) {
-    //         axios.get('api/employee')
-    //         .then(response => {
-    //           this.employees = response.data;
-    //         })
-    //      }
-    // },
-    create_employee: function create_employee() {
+    displayemployees: function displayemployees() {
       var _this = this;
+
+      if (this.$gateAuth.isSuperAdminOrAdmin()) {
+        axios.get('api/employee').then(function (response) {
+          _this.employees = response.data;
+        });
+      }
+    },
+    create_employee: function create_employee() {
+      var _this2 = this;
 
       this.$Progress.start();
       this.form.post('api/employee').then(function () {
@@ -2326,9 +2320,9 @@ __webpack_require__.r(__webpack_exports__);
           title: 'Successfully created employee!'
         });
 
-        _this.$Progress.finish();
+        _this2.$Progress.finish();
       })["catch"](function () {
-        _this.$Progress.fail();
+        _this2.$Progress.fail();
 
         toast.fire({
           icon: "error",
@@ -2393,7 +2387,10 @@ __webpack_require__.r(__webpack_exports__);
     //      }
 
   },
-  created: function created() {// Fire.$on('searching',() => {
+  created: function created() {
+    var _this3 = this;
+
+    // Fire.$on('searching',() => {
     //       let query = this.$parent.search;
     //       axios.get('api/findemployee?q=' + query)
     //       .then((data) => {
@@ -2402,11 +2399,10 @@ __webpack_require__.r(__webpack_exports__);
     //       .catch(() => {
     //       })
     //   })
-    //   this.displayemployees()
-    //   // setInterval(() => this.displayemployees(), 3000)
-    //   Fire.$on('employeeEvent', () => {
-    //     this.displayemployees()
-    //   })
+    this.displayemployees();
+    Fire.$on('employeeEvent', function () {
+      _this3.displayemployees();
+    });
   }
 });
 
@@ -68108,11 +68104,7 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            _vm._s(_vm._f("firtCharCapitalize")(employee.email))
-                          )
-                        ]),
+                        _c("td", [_vm._v(_vm._s(employee.email))]),
                         _vm._v(" "),
                         _c("td", [
                           _c(

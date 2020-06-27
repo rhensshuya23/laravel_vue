@@ -24,7 +24,7 @@ class EmployeesController extends Controller
 
     public function index()
     {
-        // return Employee::latest()->paginate(10);
+        return Employee::latest()->paginate(10);
     }
 
     // public function create()

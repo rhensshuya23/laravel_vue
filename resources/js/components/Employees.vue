@@ -38,7 +38,7 @@
                       <td>{{employee.status}}</td>
                       <td>{{employee.salary}}</td>
                       <td>{{employee.position | firtCharCapitalize}}</td>
-                      <td>{{employee.email | firtCharCapitalize}}</td>
+                      <td>{{employee.email}}</td>
                       <td>
                           <a href="" @click.prevent="editModal(employee)">
                               <i class="fa fa-edit blue"></i>
@@ -200,21 +200,14 @@
               this.form.reset()
               $('#employeeModal').modal('show')
             },
-            // displayemployees() {
-            //     // axios.get('api/employee').then(({data}) => (this.employees = data.data));
-            //     // axios({
-            //     //     method: 'get',
-            //     //     url: 'api/employee'
-            //     // })
-            //     // .then(({data}) => (this.employees = data.data))
-            //      // or like this
-            //      if(this.$gateAuth.isSuperAdminOrAdmin()) {
-            //         axios.get('api/employee')
-            //         .then(response => {
-            //           this.employees = response.data;
-            //         })
-            //      }
-            // },
+            displayemployees() {
+                 if(this.$gateAuth.isSuperAdminOrAdmin()) {
+                    axios.get('api/employee')
+                    .then(response => {
+                      this.employees = response.data;
+                    })
+                 }
+            },
 
             create_employee() {
                 this.$Progress.start()
@@ -307,11 +300,10 @@
           //       })
           //   })
           
-          //   this.displayemployees()
-          //   // setInterval(() => this.displayemployees(), 3000)
-          //   Fire.$on('employeeEvent', () => {
-          //     this.displayemployees()
-          //   })
+            this.displayemployees()
+            Fire.$on('employeeEvent', () => {
+              this.displayemployees()
+            })
         }
     }
 </script>

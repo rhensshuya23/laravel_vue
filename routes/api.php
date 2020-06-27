@@ -25,3 +25,4 @@ Route::get('findUser','API\UserController@searchUser');
 Route::post('contact-us', 'API\ContactDeveloperController@store');
 // Route::apiResources(['employee'=> 'API\EmployeesController']);
 Route::post('employee', 'API\EmployeesController@store');
+Route::get('employee', 'API\EmployeesController@index');
