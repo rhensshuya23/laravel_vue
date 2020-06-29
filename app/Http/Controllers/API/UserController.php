@@ -26,6 +26,7 @@ class UserController extends Controller
     public function index()
     {
         // $this->authorize('isAdmin','isSuperAdmin');
+        // return User::all('name' , 'type', 'position');
         return User::latest()->paginate(10);
 
         // $user = User::latest()->paginate(10);
