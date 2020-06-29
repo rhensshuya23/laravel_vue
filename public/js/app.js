@@ -2640,6 +2640,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      imgError: false,
       form: new formGlobal({
         id: '',
         name: '',
@@ -2661,14 +2662,17 @@ __webpack_require__.r(__webpack_exports__);
         return _this.form.fill(data);
       });
     },
-    getProfilePhoto: function getProfilePhoto() {
-      var photo = this.form.photo.length > 100 ? this.form.photo : "/img/profile/" + this.form.photo;
-
-      if (this.form.photo == "profile.png") {
-        photo = "img/default.png";
-      }
-
-      return photo;
+    // getProfilePhoto(event) {
+    //     // if
+    //     // console.log(this.form.photo)
+    //     // let photo = (this.form.photo.length > 100) ? this.form.photo : "/img/profile/"+this.form.photo;
+    //     // if(this.form.photo == "profile.png") {
+    //     //     photo = "img/default.png"
+    //     // }
+    //     // return photo;
+    // },
+    onImgError: function onImgError() {
+      this.imgError = true;
     },
     updatePhoto: function updatePhoto(fileEvent) {
       var _this2 = this;
@@ -2719,6 +2723,17 @@ __webpack_require__.r(__webpack_exports__);
     Fire.$on('userEvent', function () {
       _this4.displayInfo();
     });
+  },
+  computed: {
+    getProfilePhoto: function getProfilePhoto() {
+      var photo = this.imgError ? "/img/default.png" : "/img/profile/" + this.form.photo;
+
+      if (this.form.photo.length > 100) {
+        photo = this.form.photo;
+      }
+
+      return photo;
+    }
   }
 });
 
@@ -69409,10 +69424,15 @@ var render = function() {
               _c("img", {
                 staticClass: "img-circle elevation-2",
                 attrs: {
-                  src: _vm.getProfilePhoto(),
+                  src: _vm.getProfilePhoto,
                   width: "100px",
                   height: "100px",
                   alt: "User Image"
+                },
+                on: {
+                  error: function($event) {
+                    return _vm.onImgError()
+                  }
                 }
               })
             ]),

@@ -7,7 +7,7 @@
                 <div class="card card-primary card-outline">
                   <div class="card-body box-profile">
                     <div class="text-center">
-                      <img :src="getProfilePhoto()" width="100px" height="100px" class="img-circle elevation-2" alt="User Image">
+                      <img :src="getProfilePhoto" @error="onImgError()" width="100px" height="100px" class="img-circle elevation-2" alt="User Image">
                     </div>
 
                     <h3 class="profile-username text-center">{{ this.form.name }}</h3>
@@ -95,6 +95,7 @@
     export default {
         data() {
             return {
+                imgError: false,
                 form: new formGlobal({
                 id: '',
                 name: '',
@@ -112,12 +113,17 @@
                  axios.get("api/profile")
                  .then(({data}) => (this.form.fill(data)));
             },
-            getProfilePhoto() {
-                let photo = (this.form.photo.length > 100) ? this.form.photo : "/img/profile/"+this.form.photo;
-                if(this.form.photo == "profile.png") {
-                    photo = "img/default.png"
-                }
-                return photo;
+            // getProfilePhoto(event) {
+            //     // if
+            //     // console.log(this.form.photo)
+            //     // let photo = (this.form.photo.length > 100) ? this.form.photo : "/img/profile/"+this.form.photo;
+            //     // if(this.form.photo == "profile.png") {
+            //     //     photo = "img/default.png"
+            //     // }
+            //     // return photo;
+            // },
+            onImgError() {
+                this.imgError = true;
             },
             updatePhoto(fileEvent) {
                 // console.log("uploading file")
@@ -165,6 +171,17 @@
               this.displayInfo()
             })
            
+        },
+        computed: {
+            getProfilePhoto() {
+                let photo = (this.imgError) ? 
+                "/img/default.png" : 
+                "/img/profile/"+this.form.photo
+                if (this.form.photo.length > 100) {
+                    photo = this.form.photo
+                }
+                return photo
+            }
         }
     }
 </script>

@@ -9,13 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "ext-gd": "*",
+        "barryvdh/laravel-dompdf": "^0.8.6",
         "fideloper/proxy": "^4.0",
+        "fzaninotto/faker": "^1.4",
         "intervention/image": "^2.5",
         "laravel/framework": "5.7.*",
         "laravel/passport": "7.5.1",
-        "laravel/tinker": "^1.0",
-        "ext-gd": "*",
-        "fzaninotto/faker": "^1.4"
+        "laravel/tinker": "^1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

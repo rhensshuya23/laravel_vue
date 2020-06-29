@@ -53,9 +53,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <div class="image">
           @if ( Auth::user()->photo == "profile.png" )
-          <img src="img/default.png" alt="User Image" class="img-circle">
+          <router-link to="/profile" style="background-color: transparent !important;"><img src="img/default.png" alt="User Image" class="img-circle"></router-link>
+          @elseif (!file_exists(public_path('img/profile/'.Auth::user()->photo)))
+          <router-link to="/profile" style="background-color: transparent !important;"><img src="img/default.png" alt="User Image" class="img-circle"></router-link>
           @else
-          <img src="img/profile/{{Auth::user()->photo}}" alt="User Image" class="img-circle">
+          <router-link to="/profile" style="background-color: transparent !important;"><img src="img/profile/{{Auth::user()->photo}}" alt="User Image" class="img-circle"></router-link>
           @endif
         </div>
       </div>
@@ -67,12 +69,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar green-bg elevation-4">
     <!-- Brand Logo -->
-    <a href="/dashboard" class="brand-link">
+    <router-link to="/dashboard" class="brand-link" style="background-color: transparent !important;">
       <img src="./img/ros-r-only.png" alt="Profile Picture" class="brand-image img-circle" style="opacity: .8">
       <p style="color: white"><span class="brand-text">School Management</span></p>
       <p style="color: white; text-align: center; margin-top: -20px; margin-right: 30px;"><span class="brand-text">System</span></p>
       {{-- <p style="text-align: center; font-size: 15px; margin-top: -10px;"><span class="brand-text font-weight-light">HR System</span></p> --}}
-    </a>
+    </router-link>
 
     <!-- Sidebar -->
     <div class="sidebar">
