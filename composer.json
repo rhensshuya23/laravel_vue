@@ -40,6 +40,8 @@
         "psr-4": {
             "App\\": "app/"
         },
+         "exclude-from-classmap": ["vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php"],
+   		 "files": ["app/Overrides/OverrideVendorAuthenticatesUsers.php"],
         "classmap": [
             "database/seeds",
             "database/factories"
