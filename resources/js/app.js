@@ -12,6 +12,12 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
+
 import moment from 'moment'
 
 import VueProgressBar from 'vue-progressbar'
@@ -50,6 +56,11 @@ const Toast = Swal.mixin({
 window.toast = Toast;
 
 
+import jspdf from 'jspdf'
+window.jsPDF = jspdf
+import 'jspdf-autotable'
+
+
 
 // let Fire = new Vue()
 // window.fire = Fire
@@ -65,7 +76,9 @@ let routes = [
   { path: '/employees', component: require('./components/Employees.vue').default },
   { path: '/new-students', component: require('./components/NewStudents.vue').default },
   { path: '/old-students', component: require('./components/OldStudents.vue').default },
+  // { path: '/print-employees', component: require('./components/PrintEmployees.vue').default},
   { path: '/*', component: require('./components/PageNotFound.vue').default },
+
 ]
 
 // We have to register our route here

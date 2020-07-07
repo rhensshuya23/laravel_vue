@@ -27,6 +27,11 @@ class EmployeesController extends Controller
         return Employee::latest()->paginate(10);
     }
 
+    public function numberOfEmployees()
+    {
+        return Employee::all('id')->count(); //specific the id for speed optimization
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -126,5 +131,13 @@ class EmployeesController extends Controller
         }
 
         return $employee;
+    }
+
+    public function printEmployees()
+    {
+        return Employee::all('full_name', 'age', 'status', 'address', 
+            'email');
+        // return compact('employees');
+        // return view('print_employees', compact('employees'));
     }
 }

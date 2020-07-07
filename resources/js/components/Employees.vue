@@ -13,13 +13,13 @@
               </div>
               <!-- /.card-header -->
               <div class="table-responsive">
-                <table class="table table-hover">
+                <table class="table table-hover" id="employees_table_id">
                   <thead class="thead-dark">
                     <tr>
                       <th>MODIFY</th>
                       <th class="th-200">FULL NAME</th>
                       <th class="th-50">AGE</th>
-                      <th class="th-120">CONTACT NO.</th>
+                      <th class="th-150">CONTACT NO.</th>
                       <th class="th-80">STATUS</th>
                       <th class="th-80">SALARY</th>
                       <th class="th-150">POSITION</th>
@@ -54,7 +54,17 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
-                <pagination :data="employees" @pagination-change-page="getResults"></pagination>
+                <div class="row">
+                  <div class="col-md-6">
+                    <pagination :data="employees" @pagination-change-page="getResults"></pagination>
+                  </div>
+                  <div class="col-md-6">
+                     <button @click="generatePDF" class="btn btn-primary float-right">
+                     Print</button>
+                  </div>
+                </div>
+                
+               
               </div>
             </div>
             <!-- /.card -->
@@ -191,6 +201,27 @@
             }
         },
         methods: {
+
+           generatePDF() {
+             const doc = new jsPDF()
+              var finalY = doc.lastAutoTable.finalY || 10
+              doc.text('From javascript arrays', 14, finalY + 15)
+              // doc.autoTable({ html: '#employees_table_id' })
+              axios.get('api/print-employee')
+              .then(response => {
+                  doc.autoTable({
+                  startY: finalY + 20,
+                  head: [['Full Name', 'Age', 'Status', 'Address', 'Email']],
+                  body: [
+                    [this.employees = response.data.full_name, this.form.age, this.form.status,
+                     this.form.address, this.form.email]
+                  ]
+                })
+
+              })
+              
+              doc.save('table.pdf')
+           },
             getResults(page = 1) {
               axios.get('api/employee?page=' + page)
                 .then(response => {

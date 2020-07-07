@@ -34,6 +34,11 @@ class UserController extends Controller
         // return compact('user');
     }
 
+    public function countUsers()
+    {
+        return User::all('id')->count();
+    }
+
     /**
      * Store a newly created resource in storage.
      *

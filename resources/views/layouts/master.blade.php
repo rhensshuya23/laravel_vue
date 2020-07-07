@@ -199,7 +199,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <footer class="main-footer">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-      <a href="#">Developed by: Rhens - <b>ROS</b></a>
+      <a href="#">Developed by: Abdullah - <b>RHENS</b></a>
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2020 - </strong> All rights reserved.
@@ -209,7 +209,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
 @auth
   <script type="text/javascript">
     window.userGlobal = @json(auth()->user()); //In laravel we can pass data to Javascript and read it as javascript object = json_encode(auth()->user())
-    console.log(@json(auth()->user()));
   </script>
 @endauth
 
