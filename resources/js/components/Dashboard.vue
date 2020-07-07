@@ -76,7 +76,7 @@
               <div class="card-body pt-0">
                 <!--The calendar -->
                     <div>
-                      <b-calendar block v-model="value" @context="onContext"></b-calendar>
+                      <b-calendar block @context="onContext"></b-calendar>
                     </div>
               </div>
               <!-- /.card-body -->
@@ -219,9 +219,8 @@
     export default {
         data: function() {
           return {
-            numberOfEmployees: 0,
-            numberOfUsers: 0,
-            value: '',
+            numberOfEmployees: null,
+            numberOfUsers: null,
             context: null
           }
         },
@@ -230,9 +229,11 @@
             let employeesCount = axios.get('api/count-employees')
             let usersCount = axios.get('api/count-users')
             axios.all([employeesCount, usersCount])
-            .then(axios.spread((res1, res2) => {
-                this.numberOfEmployees = res1.data
-                this.numberOfUsers = res2.data
+            .then(axios.spread((...response) => { //(res1, res2)
+                // this.numberOfEmployees = res1.data
+                // this.numberOfUsers = res2.data
+                this.numberOfEmployees = response[0].data
+                this.numberOfUsers = response[1].data
             }))
           },
           onContext(ctx) {
