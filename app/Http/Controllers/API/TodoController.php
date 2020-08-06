@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Todo;
 
 class TodoController extends Controller
 {
@@ -12,9 +13,17 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
+
     public function index()
     {
-        //
+        return Todo::latest()->paginate(6);   
     }
 
     /**
@@ -25,7 +34,10 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Todo::create([
+            'user_id' => auth('api')->user()->id,
+            'title' => $request['title']
+        ]);
     }
 
     /**
@@ -59,6 +71,8 @@ class TodoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $todo = Todo::findOrFail($id);
+
+        $todo->delete();
     }
 }

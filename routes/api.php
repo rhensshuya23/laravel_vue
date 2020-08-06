@@ -32,3 +32,4 @@ Route::delete('employee/{employee}', 'API\EmployeesController@destroy');
 Route::get('find-employee','API\EmployeesController@searchEmployee');
 Route::get('print-employee','API\EmployeesController@printEmployees');
 Route::get('count-employees','API\EmployeesController@numberOfEmployees');
+Route::apiResources(['todo'=> 'API\TodoController']);
