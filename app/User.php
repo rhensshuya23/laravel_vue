@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 use App\Employee;
+use App\Todo;
 
 class User extends Authenticatable
 {
@@ -38,6 +39,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // public static function boot()
+    // {
+    //     parent::boot();
+
+    //     static::created(function ($user){
+    //         $user->todo()->create([
+    //             'title' => $user->email
+    //         ]);
+    //     });
+    // }
+
+    public function todo()
+    {
+        return $this->hasMany(Todo::class);
+    }
 
 
     // public function employees()

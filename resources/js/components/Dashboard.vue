@@ -58,7 +58,7 @@
 
 
         <div class="row mt-4">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="card bg-gradient-success">
               <div class="card-header border-0 ui-sortable-handle" style="cursor: move;">
 
@@ -82,137 +82,80 @@
               <!-- /.card-body -->
             </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card">
               <div class="card-header ui-sortable-handle" style="cursor: move;">
                 <h3 class="card-title">
                   <i class="fa fa-clipboard-list"></i>
                   To Do List
-                  <button class="btn btn-primary fas fa-plus">Add todo</button>
+                  <button class="btn btn-primary fas fa-plus" @click="addTodoModal">Add todo</button>
                 </h3>
 
-                <div class="card-tools">
-                  <ul class="pagination pagination-sm">
-                    <li class="page-item"><a href="#" class="page-link">«</a></li>
-                    <li class="page-item"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">»</a></li>
-                  </ul>
-                </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <ul class="todo-list ui-sortable" data-widget="todo-list">
+                <ul v-for="todo in todos.data" :key="todo.id" class="todo-list ui-sortable" data-widget="todo-list">
                   <li>
-                    <!-- drag handle -->
-                    <span class="handle ui-sortable-handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <!-- checkbox -->
-                    <div class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo1" id="todoCheck1">
-                      <label for="todoCheck1"></label>
-                    </div>
-                    <!-- todo text -->
-                    <span class="text">Design a nice theme</span>
-                    <!-- Emphasis label -->
-                    <small class="badge badge-danger"><i class="far fa-clock"></i> 2 mins</small>
                     <!-- General tools such as edit or delete-->
                     <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
+                      <!-- <i class="fas fa-edit"></i> -->
+                      <a href="" @click.prevent="deleteTodo(todo.id)">
+                        <i class="fa fa-trash red"></i>
+                      </a>
                     </div>
-                  </li>
-                  <li class="done">
-                    <span class="handle ui-sortable-handle">
+                    <!-- drag handle -->
+                   <!--  <span class="handle ui-sortable-handle">
                       <i class="fas fa-ellipsis-v"></i>
                       <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo2" id="todoCheck2" checked="">
-                      <label for="todoCheck2"></label>
-                    </div>
-                    <span class="text">Make the theme responsive</span>
-                    <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle ui-sortable-handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Let theme shine like a star</span>
-                    <small class="badge badge-warning"><i class="far fa-clock"></i> 1 day</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle ui-sortable-handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo4" id="todoCheck4">
-                      <label for="todoCheck4"></label>
-                    </div>
-                    <span class="text">Let theme shine like a star</span>
-                    <small class="badge badge-success"><i class="far fa-clock"></i> 3 days</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle ui-sortable-handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo5" id="todoCheck5">
-                      <label for="todoCheck5"></label>
-                    </div>
-                    <span class="text">Check your messages and notifications</span>
-                    <small class="badge badge-primary"><i class="far fa-clock"></i> 1 week</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle ui-sortable-handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo6" id="todoCheck6">
-                      <label for="todoCheck6"></label>
-                    </div>
-                    <span class="text">Let theme shine like a star</span>
-                    <small class="badge badge-secondary"><i class="far fa-clock"></i> 1 month</small>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
+                    </span> -->
+                    <!-- todo text -->
+                    <span class="text">{{ todo.title }}</span>
+                    <!-- Emphasis label -->
+                    
                   </li>
                 </ul>
+              </div>
+              <div class="card-footer">
+                <div class="row">
+                  <div class="col-md-6">
+                    <pagination :data="todos" @pagination-change-page="getResults"></pagination>
+                  </div>
+                </div>
               </div>
             </div>
             </div>
         </div>
-          </div><!-- /.container-fluid -->
-        </div>
-        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="todo_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="">Add New</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+              <form @submit.prevent="createTodo()">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <input v-model="form.title" type="text" name="title" placeholder="Enter Task" 
+                      class="form-control" :class="{ 'is-invalid': form.errors.has('title') }">
+                    <has-error :form="form" field="title"></has-error>
+                  </div>
+                </div>
+
+                  <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+              </form>
+            </div>
+            </div>
+          </div>
+  </div>
 </template>
 
 <script>
@@ -221,7 +164,11 @@
           return {
             numberOfEmployees: null,
             numberOfUsers: null,
-            context: null
+            context: null,
+            todos: {},
+            form: new formGlobal({
+              title: ''
+            }),
           }
         },
         methods: {
@@ -238,10 +185,79 @@
           },
           onContext(ctx) {
             this.context = ctx
+          },
+          displayTodos() {
+            axios.get('api/todo')
+            .then(res => {
+              this.todos = res.data
+            })
+          },
+          getResults(page = 1) {
+              axios.get('api/todo?page=' + page)
+                .then(response => {
+                  this.todos = response.data;
+                });
+            },
+          addTodoModal() {
+            this.form.reset()
+            $('#todo_modal').modal('show')
+          },
+          createTodo() {
+            this.$Progress.start()
+            this.form.post('api/todo')
+            .then(() => {
+                Fire.$emit('todoEvent')
+                $('#todo_modal').modal('hide')
+                toast.fire({
+                  icon: 'success',
+                  title: 'Successfully created task!'
+                })
+                this.$Progress.finish()
+              })
+              .catch(() => {
+                this.$Progress.fail()
+                toast.fire({
+                  icon: "error",
+                  title: "The given data was invalid!"
+                })
+              })
+          },
+          deleteTodo(id) {
+            swal.fire({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+               }).then((result) => {
+                if(result.value) { //if result is true then
+                  this.$Progress.start()
+                  this.form.delete('api/todo/'+id)
+                  .then(()=> {
+                      swal.fire(
+                        'Deleted!',
+                        'Todo has been deleted.',
+                        'success'
+                      )
+                    Fire.$emit('todoEvent')
+                    this.$Progress.finish()
+                  })
+                  .catch(() => {
+                    this.$Progress.fail()
+                    swal.fire("Failed!", "Check the fill up form!", "Warning");
+                  })
+                }
+              })
           }
         },
         created() {
           this.count()
+          this.displayTodos();
+          Fire.$on('todoEvent', () => {
+              this.displayTodos()
+            })
         }
     }
 </script>
