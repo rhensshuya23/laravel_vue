@@ -253,10 +253,10 @@
           }
         },
         created() {
-          this.count()
+          this.count();
           this.displayTodos();
           Fire.$on('todoEvent', () => {
-              this.displayTodos()
+              this.displayTodos();
             })
         }
     }
