@@ -10,3 +10,9 @@ To install this you need to:
 7. php artisan db:seed
 8. php artisan passport:install --personal
 9. php artisan serve
+
+Email me: abdllah.devexpert@gmail.com
+
+Property of Abdullah Abdulazis
+
+Thank you!
